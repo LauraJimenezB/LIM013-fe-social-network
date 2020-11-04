@@ -8,7 +8,7 @@ const signUpView = `
     <input id="email" type="email" placeholder="Correo">
     <input id="password" type="password" placeholder="Contraseña">
     <input id="confirmPassword" type="password" placeholder="Confirmar contraseña">
-    <button id="mySubmit"class='signButton'>Sign Up</button>
+    <button id="mySubmit" class="signButton">Sign Up</button>
 </form>
 <a>Ya tienes una cuenta creada?Log in<a>
 `
