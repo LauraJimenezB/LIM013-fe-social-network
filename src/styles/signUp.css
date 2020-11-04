@@ -18,3 +18,18 @@ form {
     flex-direction: column;
     max-width: 50%;
 }
+input {
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom-color:#FFFFFF;
+    margin: 5px;
+    background-color: #998f8f;
+}
+.signButton {
+    border: solid;
+    border-color: #C4C4C4;
+    border-radius: 25px;
+    background-color: #C4C4C4;
+    padding: 5px;
+}
