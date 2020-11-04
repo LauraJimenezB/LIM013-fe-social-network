@@ -1,6 +1,6 @@
 
-const signUpView = ` 
-<header>
+const signUpView = 
+`<header>
     <h1>STREET FOOD</h1>
 </header>
 <form>
@@ -28,6 +28,7 @@ submitButton.addEventListener("click", () => {
             };
             console.log(data);
         //return password;
+
     } else {
         alert("Las contraseñas no coinciden")
     }
