@@ -1,4 +1,5 @@
 import {signUpUser} from '../firebase/auth.js';
+import {createUser} from '../firebase/firestore.js'
 
 const signUpView = ` 
 <header>
