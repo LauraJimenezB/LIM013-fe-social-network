@@ -1,9 +1,6 @@
 //Creación de nueva cuenta de usuario
-import {data} from "signUp.js"
+//import firebase from 'firebase';
 
-firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
-    // Handle Errors here.
-    var errorCode = error.code;
-    var errorMessage = error.message;
-    // ...
-  });
+export const signUpUser = (email, password) => {
+  return firebase.auth().createUserWithEmailAndPassword(email, password);
+};

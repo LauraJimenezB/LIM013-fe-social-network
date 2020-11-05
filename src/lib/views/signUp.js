@@ -1,3 +1,4 @@
+import {signUpUser} from '../firebase/auth.js';
 
 const signUpView = ` 
 <header>
@@ -20,16 +21,17 @@ submitButton.addEventListener("click", () => {
     let name = document.getElementById("name").value;
     let email = document.getElementById("email").value;
     if(document.getElementById("password").value === document.getElementById("confirmPassword").value){
-        let password = document.getElementById("password").value;
-        data = {
-            user: name, 
-            email: email, 
-            password: password
-            };
-            console.log(data);
-        //return password;
+        if (document.getElementById("password").value.length>=6) {
+            let password = document.getElementById("password").value;
+            signUpUser(email, password)
+            .then((result) => console.log(result))
+            .catch((result)=> console.log(result))
+        }
+        else {
+            alert ("La contraseña debe tener más de 6 caracteres");
+        }
     } else {
         alert("Las contraseñas no coinciden")
     }
 })
-console.log(data);
+
