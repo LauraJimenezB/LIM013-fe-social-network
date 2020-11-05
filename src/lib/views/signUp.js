@@ -20,6 +20,7 @@ const submitButton = document.getElementById("mySubmit");
 submitButton.addEventListener("click", () => {
     let name = document.getElementById("name").value;
     let email = document.getElementById("email").value;
+    
     if(document.getElementById("password").value === document.getElementById("confirmPassword").value){
         if (document.getElementById("password").value.length>=6) {
             let password = document.getElementById("password").value;
