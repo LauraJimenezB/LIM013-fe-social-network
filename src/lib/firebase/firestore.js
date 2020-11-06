@@ -1,9 +1,10 @@
 //Uso de base de datos Firestore
-export const  createUser = (userUid, email, name, photo) => { firebase.firestore()
-    .collection("usuarios").add({
+
+export const  createUserDB = (userUid, email, name, photo) => { firebase.firestore()
+    .collection("users").doc().set({
         name,
         email,
         userUid,
         photo
-    })
+    });
 }
