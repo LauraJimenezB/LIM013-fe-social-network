@@ -1,5 +1,5 @@
 import {signUpUser} from '../firebase/auth.js';
-import {createUser} from '../firebase/firestore.js'
+import {createUser} from '../controllers/signUp-controller.js'
 
 const signUpView = ` 
 <header>
@@ -25,9 +25,7 @@ submitButton.addEventListener("click", () => {
     if(document.getElementById("password").value === document.getElementById("confirmPassword").value){
         if (document.getElementById("password").value.length>=6) {
             let password = document.getElementById("password").value;
-            signUpUser(email, password)
-            .then((result) => console.log(result.uid))
-            .catch((result)=> console.log(result))
+            createUser(email, password, name);
         }
         else {
             alert ("La contraseña debe tener más de 6 caracteres");
