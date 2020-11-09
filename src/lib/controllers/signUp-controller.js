@@ -1,11 +1,11 @@
-import {createUserDB} from '../firebase/firestore.js'
-import {signUpUser} from '../firebase/auth.js'
+import { createUserDB } from '../firebase/firestore.js';
+import { signUpUser } from '../firebase/auth.js';
 
 export const createUser = (email, password, name, photo) => {
     signUpUser(email, password)
       .then((res) => {
         window.location.hash = '#/home';
-        createUserDB(res.user.id, email, name, photo);
+        createUserDB(res.user.uid, email, name, photo);
       })
       .catch((error) => {
         const errorCode = error.code;
@@ -23,4 +23,4 @@ export const createUser = (email, password, name, photo) => {
             */
         }
       });
-  };
+    };

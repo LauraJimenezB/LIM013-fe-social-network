@@ -1,4 +1,4 @@
-import {signUpUser} from '../firebase/auth.js';
+
 import {createUser} from '../controllers/signUp-controller.js'
 
 const signUpView = ` 
