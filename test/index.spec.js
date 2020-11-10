@@ -1,8 +1,11 @@
 // importamos la funcion que vamos a testear
-import { createUser } from "../src/lib/controllers/signUp-controller.js";
+// import { createUser } from '../src/lib/controllers/signUp-controller.js';
+import { signUpUser } from '../src/lib/firebase/auth.js';
+const firebasemock = require('firebase-mock');
 
-describe('myFunction', () => {
+const mockAuth = new firebasemock.MockFirebase();
+describe('createUser', () => {
   it('debería ser una función', () => {
-    expect(typeof createUser).toBe('function');
+    expect(typeof signUpUser).toBe('function');
   });
 });

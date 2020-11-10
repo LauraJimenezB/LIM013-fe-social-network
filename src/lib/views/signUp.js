@@ -1,5 +1,4 @@
-
-import {createUser} from '../controllers/signUp-controller.js'
+import { createUser } from '../controllers/signUp-controller.js';
 
 const signUpView = ` 
 <header>
@@ -13,25 +12,22 @@ const signUpView = `
 </form>
 <button id="mySubmit" class="signButton">Sign Up</button>
 <a>Ya tienes una cuenta creada?Log in<a>
-`
-document.getElementById("container").innerHTML = signUpView;
-//Obteniendo
-let data={};
-const submitButton = document.getElementById("mySubmit");
-submitButton.addEventListener("click", () => {
-    let name = document.getElementById("name").value;
-    let email = document.getElementById("email").value;
+`;
+document.getElementById('container').innerHTML = signUpView;
+// Obteniendo
+const submitButton = document.getElementById('mySubmit');
+submitButton.addEventListener('click', () => {
+  const name = document.getElementById('name').value;
+  const email = document.getElementById('email').value;
 
-    if(document.getElementById("password").value === document.getElementById("confirmPassword").value){
-        if (document.getElementById("password").value.length>=6) {
-            let password = document.getElementById("password").value;
-            createUser(email, password, name);
-        }
-        else {
-            alert ("La contraseña debe tener más de 6 caracteres");
-        }
+  if (document.getElementById('password').value === document.getElementById('confirmPassword').value) {
+    if (document.getElementById('password').value.length >= 6) {
+      const password = document.getElementById('password').value;
+      createUser(email, password, name);
     } else {
-        alert("Las contraseñas no coinciden")
+      alert('La contraseña debe tener más de 6 caracteres');
     }
-})
-
+  } else {
+    alert('Las contraseñas no coinciden');
+  }
+});
