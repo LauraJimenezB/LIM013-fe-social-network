@@ -4,7 +4,7 @@ export const createUserDB = (email, name, userUid, photo) => {
     name,
     email,
     userUid,
-    photo
+    photo,
   };
   return db.collection('users').doc(userUid).set(data)
     .then((response) => console.log(response))
