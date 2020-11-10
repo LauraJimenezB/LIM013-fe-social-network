@@ -1,5 +1,4 @@
 import { createUser } from '../controllers/signUp-controller.js';
-
 const signUpView = ` 
 <header>
     <h1>STREET FOOD</h1>
@@ -23,7 +22,7 @@ submitButton.addEventListener('click', () => {
   if (document.getElementById('password').value === document.getElementById('confirmPassword').value) {
     if (document.getElementById('password').value.length >= 6) {
       const password = document.getElementById('password').value;
-      createUser(email, password, name);
+      createUser(email, password, name, "no photo");
     } else {
       alert('La contraseña debe tener más de 6 caracteres');
     }

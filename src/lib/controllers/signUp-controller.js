@@ -1,10 +1,9 @@
-import { createUserDB } from '../firebase/firestore.js';
 import { signUpUser } from '../firebase/auth.js';
-
+import { createUserDB } from '../firebase/firestore.js';
 export const createUser = (email, password, name, photo) => {
   signUpUser(email, password)
     .then((res) => {
-      createUserDB(res.user.uid, email, name, photo);
+      createUserDB(email, name, res.user.uid, photo)
       window.location.hash = '#/home';
     })
     .catch((error) => {
