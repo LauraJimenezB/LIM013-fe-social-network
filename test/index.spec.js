@@ -1,3 +1,5 @@
+/* eslint-disable import/first */
+/* eslint-disable import/order */
 /* // importamos el mock-cloud-firestore
 import { it } from '@jest/globals';
 import MockFirebase from 'mock-cloud-firestore';
@@ -34,12 +36,15 @@ describe('createUser', () => {
  */
 // Importamos la función de registro
 
-import { signUpUser } from '../src/lib/firebase/auth.js';
-
 const firebasemock = require('firebase-mock');
+/*
+firebasemock.override();
+*/
 
-const mockauth = new firebasemock.MockFirebase();
-const mockfirestore = new firebasemock.MockFirestore();
+console.log(firebasemock, firebasemock.override);
+
+const mockauth = firebasemock.MockFirebase();
+const mockfirestore = firebasemock.MockFirestore();
 mockfirestore.autoFlush();
 mockauth.autoFlush();
 
@@ -49,6 +54,8 @@ global.firebase = firebasemock.MockFirebaseSdk(
   () => mockauth,
   () => mockfirestore,
 );
+
+import { signUpUser } from '../src/lib/firebase/auth.js';
 
 describe('se crea un usuario', () => {
   it('Debería poder registrarse un usuario', () => signUpUser('pepita@gmail.com', 'abc1d')
