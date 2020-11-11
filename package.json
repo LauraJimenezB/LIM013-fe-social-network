@@ -37,6 +37,6 @@
   },
   "dependencies": {
     "@jest/globals": "^26.6.2",
-    "firebase-mock": "^2.3.2"
+    "firebase": "^8.0.1"
   }
 }

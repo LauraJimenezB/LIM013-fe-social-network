@@ -33,32 +33,26 @@ describe('createUser', () => {
 });
  */
 // Importamos la función de registro
+
 import { signUpUser } from '../src/lib/firebase/auth.js';
 
 const firebasemock = require('firebase-mock');
 
-const mockauth = new firebasemock.MockAuthentication();
-const mockdatabase = new firebasemock.MockFirebase();
+const mockauth = new firebasemock.MockFirebase();
 const mockfirestore = new firebasemock.MockFirestore();
-const mockstorage = new firebasemock.MockStorage();
-const mockmessaging = new firebasemock.MockMessaging();
-const mocksdk = new firebasemock.MockFirebaseSdk(
+mockfirestore.autoFlush();
+mockauth.autoFlush();
+
+global.firebase = firebasemock.MockFirebaseSdk(
   // use null if your code does not use RTDB
-  (path) => (path ? mockdatabase.child(path) : mockdatabase),
-  // use null if your code does not use AUTHENTICATION
+  () => null,
   () => mockauth,
-  // use null if your code does not use FIRESTORE
   () => mockfirestore,
-  // use null if your code does not use STORAGE
-  () => mockstorage,
-  // use null if your code does not use MESSAGING
-  () => mockmessaging,
 );
 
-const email = 'pepita@gmail.com';
-const password = 'abc1d';
-signUpUser(email, password);
-mocksdk.auth().flush();
-mocksdk.auth().getUserByEmail('pepita@gmail.com').then((user) => {
-  console.assert(user, 'ben was created');
+describe('se crea un usuario', () => {
+  it('Debería poder registrarse un usuario', () => signUpUser('pepita@gmail.com', 'abc1d')
+    .then((res) => {
+      expect(res.email).toBe('pepita@gmail.com');
+    }));
 });
