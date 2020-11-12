@@ -33,3 +33,57 @@ input {
     background-color: #C4C4C4;
     padding: 5px;
 }
+
+.signUpImg {
+    width: 100%;
+}
+
+@media (min-width: 500px) {
+    header {
+        background-image: url(https://media.giphy.com/media/Y4yU0F78ifGjAeixSP/giphy.gif);
+        background-size: 50vw 100vh;
+        background-repeat: no-repeat;
+        width:50vw;
+        height:100vh;
+        padding:0px;
+        margin: none;
+    }
+
+    h1{
+        margin-top:45vh;
+        font-size: 10vh;
+    }
+
+    img {
+        display: none;
+    }
+
+    .container {
+        flex-direction: row;
+        background-color: #FFFFFF;
+    }
+    .signUpImg {
+        width: 100%;
+    }
+    
+    section{
+        margin-left:0%;
+        margin-right:none;
+        align-items:center;
+        text-align:center;
+        justify-content:center;
+        background-color: #998F8F;
+        width: 50%;
+        height:100%;
+    }
+    form {
+        align-items:center;
+        text-align:center;
+        margin-left: auto;
+        margin-right: auto;
+        width:100%;
+    }
+    .google {
+        margin-top:5%;
+    }
+}

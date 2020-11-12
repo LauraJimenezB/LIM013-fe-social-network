@@ -3,15 +3,24 @@ import { createUser } from '../controllers/signUp-controller.js';
 const signUpView = ` 
 <header>
     <h1>STREET FOOD</h1>
+    <h3>Conoce y comparte experiencias</h3>
 </header>
-<form>
+<section>
+  <form>
+    <h2>SIGN UP</h2>
     <input id="name" type="text" placeholder="Nombre de usuario">
     <input id="email" type="email" placeholder="Correo">
     <input id="password" type="password" placeholder="Contraseña">
     <input id="confirmPassword" type="password" placeholder="Confirmar contraseña">
-</form>
-<button id="mySubmit" class="signButton">Sign Up</button>
-<a>Ya tienes una cuenta creada?Log in<a>
+  </form>
+  <button id="mySubmit" class="signButton">Sign Up</button>
+  <div class='google'>
+    <button><img src='../img/buscar.svg' width='40px' height='40px'></buttton>
+  </div>
+  <div>
+    <a>Ya tienes una cuenta creada?Log in<a>
+  </div>
+</section>
 `;
 document.getElementById('container').innerHTML = signUpView;
 // Obteniendo
