@@ -41,7 +41,7 @@ const firebasemock = require('firebase-mock');
 firebasemock.override();
 */
 
-console.log(firebasemock, firebasemock.override);
+console.log(firebasemock);
 
 const mockauth = firebasemock.MockFirebase();
 const mockfirestore = firebasemock.MockFirestore();
