@@ -35,16 +35,12 @@ describe('createUser', () => {
 });
  */
 // Importamos la función de registro
-
 const firebasemock = require('firebase-mock');
-/*
-firebasemock.override();
-*/
 
 console.log(firebasemock);
 
-const mockauth = firebasemock.MockFirebase();
-const mockfirestore = firebasemock.MockFirestore();
+const mockauth = new firebasemock.MockAuthentication();
+const mockfirestore = new firebasemock.MockFirestore();
 mockfirestore.autoFlush();
 mockauth.autoFlush();
 
