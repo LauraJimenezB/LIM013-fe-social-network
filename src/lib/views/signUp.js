@@ -22,7 +22,7 @@ const signUpView = `
   </div>
 </section>
 `;
-document.getElementById('container').innerHTML = signUpView;
+/* document.getElementById('container').innerHTML = signUpView; */
 // Obteniendo
 const submitButton = document.getElementById('mySubmit');
 submitButton.addEventListener('click', () => {
