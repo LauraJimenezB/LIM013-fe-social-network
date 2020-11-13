@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { createUser } from '../controllers/signUp-controller.js';
 
 const signUpView = ` 
