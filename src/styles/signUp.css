@@ -1,4 +1,4 @@
-.container {
+/* .container {
     background-color: #998F8F;
     font-family: 'Livvic', sans-serif;
     color: #000000;
@@ -13,12 +13,12 @@
     text-align: center;
     align-items: center;
 }
-form {
+.signUpform {
     display: flex;
     flex-direction: column;
     max-width: 50%;
 }
-input {
+.signUpinput {
     border-top: none;
     border-left: none;
     border-right: none;
@@ -39,7 +39,7 @@ input {
 }
 
 @media (min-width: 500px) {
-    header {
+    .signUpHeader {
         background-image: url(https://media.giphy.com/media/ANw1uAm7TsnTy/giphy.gif);
         background-size: 50vw 100vh;
         background-repeat: no-repeat;
@@ -49,16 +49,16 @@ input {
         margin: none;
     }
 
-    h1{
+    .signUph1{
         margin-top:45vh;
         font-size: 10vh;
     }
 
-    img {
+    .signUpimg {
         display: none;
     }
 
-    .container {
+    .signUpcontainer {
         flex-direction: row;
         background-color: #FFFFFF;
     }
@@ -87,4 +87,4 @@ input {
     .google {
         margin-top:5%;
     }
-}
+} */

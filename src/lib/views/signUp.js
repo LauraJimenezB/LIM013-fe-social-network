@@ -7,12 +7,12 @@ const signUpView = `
     <h3>Conoce y comparte experiencias</h3>
 </header>
 <section>
-  <form>
+  <form class="signUpForm">
     <h2>SIGN UP</h2>
-    <input id="name" type="text" placeholder="Nombre de usuario">
-    <input id="email" type="email" placeholder="Correo">
-    <input id="password" type="password" placeholder="Contraseña">
-    <input id="confirmPassword" type="password" placeholder="Confirmar contraseña">
+    <input class="signUpInput" id="name" type="text" placeholder="Nombre de usuario">
+    <input class="signUpInput" id="email" type="email" placeholder="Correo">
+    <input class="signUpInput" id="password" type="password" placeholder="Contraseña">
+    <input class="signUpInput" id="confirmPassword" type="password" placeholder="Confirmar contraseña">
   </form>
   <button id="mySubmit" class="signButton">Sign Up</button>
   <div class='google'>
