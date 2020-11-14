@@ -20,11 +20,14 @@ const signInView = `
   </div>
 </section>
 `;
-document.getElementById('container').innerHTML = signInView;
+
+const signInContainer = document.createElement('div').appendchild(signInView);
+
+document.getElementById('container').appendchild(signInContainer);
 // Obteniendo
 const signInButton = document.getElementById('signIn');
 signInButton.addEventListener('click', () => {
   const password = document.getElementById('passwordSignIn').value;
   const email = document.getElementById('emailSignIn').value;
-  logInUser(email, password)
+  logInUser(email, password);
 });
