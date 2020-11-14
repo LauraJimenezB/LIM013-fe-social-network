@@ -37,8 +37,6 @@ describe('createUser', () => {
 // Importamos la función de registro
 const firebasemock = require('firebase-mock');
 
-console.log(firebasemock);
-
 const mockauth = new firebasemock.MockAuthentication();
 const mockfirestore = new firebasemock.MockFirestore();
 mockfirestore.autoFlush();
@@ -51,10 +49,14 @@ global.firebase = firebasemock.MockFirebaseSdk(
   () => mockfirestore,
 );
 
-import { signUpUser } from '../src/lib/firebase/auth.js';
+import { signUpUser, signInUser } from '../src/lib/firebase/auth.js';
 
 describe('se crea un usuario', () => {
   it('Debería poder registrarse un usuario', () => signUpUser('pepita@gmail.com', 'abc1d')
+    .then((res) => {
+      expect(res.email).toBe('pepita@gmail.com');
+    }));
+  it('Debería poder ingresar un usuario', () => signInUser('pepita@gmail.com', 'abc1d')
     .then((res) => {
       expect(res.email).toBe('pepita@gmail.com');
     }));
