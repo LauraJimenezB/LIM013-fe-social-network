@@ -2,21 +2,22 @@ import { logInUser } from '../controllers/signIn-controller.js';
 
 const signInView = (`
 <div class="signInContainer" id="signInView">
-  <header>
+  <header class="signInHeader">
     <div>
       <h1>STREET FOOD</h1>
       <h3>Conoce y comparte experiencias</h3>
       </div>
   </header>
-  <section class="signIn">
+  <section class="signInForm">
     <form>
       <h2>SIGN IN</h2>
+      <p>Bienvenid@ de nuevo!</p>
       <input id="emailSignIn" type="email" placeholder="Correo">
       <input id="passwordSignIn" type="password" placeholder="Contraseña">
     </form>
-    <button id="signIn" class="signButton">Sign In</button>
+    <button id="signIn" class="signInButton">Sign In</button>
     <div class='google'>
-      <button><img src='../img/buscar.svg' width='40px' height='40px'></buttton>
+      <button><img class="signInImg" src='../img/buscar.svg' width='40px' height='40px'></buttton>
     </div>
     <div>
       <a>No tienes una cuenta creada?Sign in<a>

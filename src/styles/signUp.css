@@ -1,4 +1,4 @@
-/* .container {
+ .signUpContainer {
     background-color: #998F8F;
     font-family: 'Livvic', sans-serif;
     color: #000000;
@@ -26,7 +26,7 @@
     margin: 5px;
     background-color: #998f8f;
 }
-.signButton {
+.signUpButton {
     border: solid;
     border-color: #C4C4C4;
     border-radius: 25px;
@@ -66,7 +66,7 @@
         width: 100%;
     }
     
-    section{
+    .signUpSection{
         margin-left:0%;
         margin-right:none;
         align-items:center;
@@ -76,7 +76,7 @@
         width: 50%;
         height:100%;
     }
-    form {
+    .signUpForm {
         align-items:center;
         text-align:center;
         margin-left: auto;
@@ -87,4 +87,4 @@
     .google {
         margin-top:5%;
     }
-} */
+}
