@@ -1,10 +1,9 @@
 .signInContainer {
-    background-color: #998F8F;
+    background-color: #000000;
     font-family: 'Livvic', sans-serif;
-    color: #000000;
+    color: #ffffff;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     position: absolute;
     top: 0;
     bottom: 0;
@@ -18,39 +17,98 @@
     flex-direction: column;
     max-width: 50%;
 }
-.signInForm>input {
+
+.formInput {
     border-top: none;
     border-left: none;
     border-right: none;
     border-bottom-color:#FFFFFF;
     margin: 5px;
-    background-color: #998f8f;
+    margin-bottom: 2vh;
+    background-color: #000000;
 }
+
 .signInButton {
     border: solid;
     border-color: #C4C4C4;
     border-radius: 25px;
     background-color: #C4C4C4;
     padding: 5px;
+    margin: 10px;
+    margin-top:15px;
+    margin-bottom:20px;
+    height: 35px;
+    width:90%;
+    font-size: 15px;
 }
 
-.signInImg {
-    width: 100%;
-}
+
 .signInHeader{
-    background-image: url(../img/streetFoodShot2.jpg);
+    background-image: url(../img/streetF.jpg);
     background-size: 100%;
     background-repeat: no-repeat;
     color: white;
     margin: 0px;
-    height: 30%;
+    height: 35%;
     width: 100%;
-    top: 0;
+    margin-top: 0;
     right: 0;
     left: 0;
+    background-color: #302d2d;
+    opacity: 0.85;
 }
+
+.signInTitle {
+    margin-top: 10vh;
+}
+
+.footer {
+    margin-top: 20px;
+}
+
+
 @media (min-width: 500px) {
     .signInContainer{
         flex-direction: row;
+    }
+
+    .signInHeader {
+        background-size: 50vw 100vh;
+        background-repeat: no-repeat;
+        width:50vw;
+        height:90vh;
+        padding:0px;
+        margin: none;
+        margin-left:5vh;
+    }
+
+    .signInTitle {
+        margin-top:30vh;
+        font-size: 6vh;
+    }
+    
+    .signInSection{
+        margin-left:0%;
+        margin-right:none;
+        align-items:center;
+        text-align:center;
+        justify-content:center;
+        background-color: #998F8F;
+        width: 50%;
+        height:100%;
+    }
+    .signInForm {
+        align-items:center;
+        text-align:center;
+        margin-left: auto;
+        margin-right: auto;
+        width:20%;
+    }
+
+    .signInButton {
+        width: 90%;
+    }
+    .google {
+        margin-top:5%;
     }
 }

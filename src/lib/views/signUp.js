@@ -1,31 +1,31 @@
 /* eslint-disable no-unused-vars */
 import { createUser } from '../controllers/signUp-controller.js';
 
-const signUpView = `
+const signUpView = (`
 <div class="signUpContainer">
-  <header>
-      <h1>STREET FOOD</h1>
-      <h3>Conoce y comparte experiencias</h3>
+  <header class="signUpHeader">
+    <div class="signUpTitle">
+    </div>
   </header>
-  <section class="signUpSection>
-    <form class="signUpForm">
+  <section class="signUpForm">
+    <form>
       <h2>SIGN UP</h2>
       <input class="signUpInput" id="name" type="text" placeholder="Nombre de usuario">
-      <input class="signUpInput" id="email" type="email" placeholder="Correo">
-      <input class="signUpInput" id="password" type="password" placeholder="Contraseña">
+      <input  class="signUpInput" id="email" type="email" placeholder="Correo">
+      <input  class="signUpInput" id="password" type="password" placeholder="Contraseña">
       <input class="signUpInput" id="confirmPassword" type="password" placeholder="Confirmar contraseña">
     </form>
     <button id="mySubmit" class="signUpButton">Sign Up</button>
     <div class='google'>
       <button><img src='../img/buscar.svg' width='40px' height='40px'></buttton>
     </div>
-    <div>
-      <a>Ya tienes una cuenta creada?Log in<a>
+    <div class="signUpFooter">
+      <a>Ya tienes una cuenta creada? Log in<a>
     </div>
   </section>
 </div>
-`;
-/* document.getElementById('container').innerHTML = signUpView; */
+`);
+document.getElementById('container').innerHTML = signUpView;
 // Obteniendo
 const submitButton = document.getElementById('mySubmit');
 submitButton.addEventListener('click', () => {
