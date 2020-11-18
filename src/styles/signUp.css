@@ -45,12 +45,17 @@
 .signUpImg {
     width: 100%;
 }
-
+.iconify { 
+    width: 40vw; 
+    height: 40vh; 
+    padding: 0;
+    border: 0;
+}
 .signUpHeader{
     background-image: url(../img/wallp2.jpg);
     background-size: 100%;
     background-repeat: no-repeat;
-    color: white;
+    background-size: 100%;
     margin: 0px;
     height: 20%;
     width: 100%;
@@ -124,9 +129,19 @@
 
     .signUpButton {
         width: 50%;
+        background-color: wheat;
+        font-family: 'Livvic', sans-serif;
+        border: none;
+        color: purple;
+        font-weight: bold;
+        font-size: 3vh;
     }
-    .google {
+    .google button {
         margin-top:5%;
+        background-color: none;
+        border: outset 5px green;
+        border-radius: 48%;
+        padding: 5px;
     }
     
     .signUpFooter {
