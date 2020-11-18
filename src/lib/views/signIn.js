@@ -1,8 +1,9 @@
 import { logInUser } from '../controllers/signIn-controller.js';
 
 // eslint-disable-next-line no-unused-vars
-const signInView = (`
-<div class="signInContainer" id="signInView">
+export const signIn = () => {
+  const signInView = `
+  <div class="signInContainer" id="signInView">
   <header class="signInHeader">
     <div class="signInTitle">
       <h1>STREET FOOD</h1>
@@ -21,20 +22,28 @@ const signInView = (`
       <button><img class="signInImg" src='../img/buscar.svg' width='40px' height='40px'></buttton>
     </div>
     <div class="footer">
-      <a>No tienes una cuenta creada?Sign in<a>
+      <p>No tienes una cuenta creada?<a href="#/signUp">Sign up</a></p>
     </div>
   </section>
 </div>
-`);
-/*
-document.getElementById('container').innerHTML = signInView;
+`;
 
-// Obteniendo
+  // document.getElementById('container').innerHTML = signInView;
 
-const signInButton = document.getElementById('signIn');
-signInButton.addEventListener('click', () => {
-  const password = document.getElementById('passwordSignIn').value;
-  const email = document.getElementById('emailSignIn').value;
-  logInUser(email, password);
-});
-*/
+  // Obteniendo
+  const divElement = document.createElement('div');
+  divElement.innerHTML = signInView;
+
+  const signInButton = divElement.querySelector('#signIn');
+  signInButton.addEventListener('click', () => {
+    const password = divElement.querySelector('#passwordSignIn').value;
+    const email = divElement.querySelector('#emailSignIn').value;
+    logInUser(email, password);
+  });
+
+  return divElement;
+  /*
+  document.getElementById('container').innerHTML = signInView;
+  return document.getElementById('container');
+  */
+};
