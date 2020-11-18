@@ -127,15 +127,6 @@
         margin: 15px;
     }
 
-    .signUpButton {
-        width: 50%;
-        background-color: wheat;
-        font-family: 'Livvic', sans-serif;
-        border: none;
-        color: purple;
-        font-weight: bold;
-        font-size: 3vh;
-    }
     .google button {
         margin-top:5%;
         background-color: none;
