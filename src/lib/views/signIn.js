@@ -12,10 +12,14 @@ export const signIn = () => {
   </header>
   <section class="signInForm">
     <form>
-      <h2>SIGN IN</h2>
-      <p>Bienvenid@ de nuevo!</p>
+      <h2 class="h2In">SIGN IN</h2>
+      <p>¡Bienvenid@ de nuevo!</p>
+      <div> 
       <input class="formInput" id="emailSignIn" type="email" placeholder="Correo">
+      </div> 
+      <div> 
       <input class="formInput" id="passwordSignIn" type="password" placeholder="Contraseña">
+      </div> 
     </form>
     <button id="signIn" class="signInButton">Sign In</button>
     <div class='google'>

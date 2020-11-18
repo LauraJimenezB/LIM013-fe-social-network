@@ -3,7 +3,7 @@ import { changeView } from './lib/controllers/routers.js';
 
 const init = () => {
   changeView(window.location.hash);
-  window.addEventListener('hashChange', () => changeView(window.location.hash));
+  window.addEventListener('hashchange', () => changeView(window.location.hash));
 };
 
 window.addEventListener('load', init);
