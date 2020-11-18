@@ -1,8 +1,9 @@
 /* eslint-disable no-unused-vars */
 import { createUser } from '../controllers/signUp-controller.js';
 
-const signUpView = (`
-<div class="signUpContainer">
+export const signUp = () => {
+  const signUpView = `
+  <div class="signUpContainer">
   <header class="signUpHeader">
     <div class="signUpTitle">
     </div>
@@ -20,26 +21,33 @@ const signUpView = (`
       <button><img src='../img/buscar.svg' width='40px' height='40px'></buttton>
     </div>
     <div class="signUpFooter">
-      <a>Ya tienes una cuenta creada? Log in<a>
+      <p>Ya tienes una cuenta creada?<a href="#/signIn">Sign In</a></p>
     </div>
   </section>
 </div>
-`);
-document.getElementById('container').innerHTML = signUpView;
-// Obteniendo
-const submitButton = document.getElementById('mySubmit');
-submitButton.addEventListener('click', () => {
-  const name = document.getElementById('name').value;
-  const email = document.getElementById('email').value;
+`;
+  // document.getElementById('container').innerHTML = signUpView;
+  // Obteniendo
 
-  if (document.getElementById('password').value === document.getElementById('confirmPassword').value) {
-    if (document.getElementById('password').value.length >= 6) {
-      const password = document.getElementById('password').value;
-      createUser(email, password, name, 'no photo');
+  const divElement = document.createElement('div');
+  divElement.innerHTML = signUpView;
+
+  const submitButton = divElement.querySelector('#mySubmit');
+  submitButton.addEventListener('click', () => {
+    const name = divElement.querySelector('#name').value;
+    const email = divElement.querySelector('#email').value;
+
+    if (divElement.querySelector('#password').value === divElement.querySelector('#confirmPassword').value) {
+      if (divElement.querySelector('#password').value.length >= 6) {
+        const password = divElement.querySelector('#password').value;
+        createUser(email, password, name, 'no photo');
+      } else {
+        alert('La contraseña debe tener más de 6 caracteres');
+      }
     } else {
-      alert('La contraseña debe tener más de 6 caracteres');
+      alert('Las contraseñas no coinciden');
     }
-  } else {
-    alert('Las contraseñas no coinciden');
-  }
-});
+  });
+
+  return divElement;
+};

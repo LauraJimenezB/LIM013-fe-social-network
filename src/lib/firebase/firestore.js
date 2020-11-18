@@ -1,4 +1,6 @@
-const db = firebase.firestore();
+import { firestore } from './init.js';
+
+const db = firestore;
 export const createUserDB = (email, name, userUid, photo) => {
   const data = {
     name,
@@ -6,7 +8,7 @@ export const createUserDB = (email, name, userUid, photo) => {
     userUid,
     photo,
   };
-  return db.collection('users').doc(userUid).set(data)
+  return db().collection('users').doc(userUid).set(data)
     .then((response) => console.log(response))
     .catch((error) => console.log('Hubo un error', error));
 };
