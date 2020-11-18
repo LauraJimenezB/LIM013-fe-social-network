@@ -13,7 +13,7 @@ export const signIn = () => {
   <section class="signInForm">
     <form>
       <h2 class="h2In">SIGN IN</h2>
-      <p>Bienvenid@ de nuevo!</p>
+      <p>¡Bienvenid@ de nuevo!</p>
       <div> 
       <input class="formInput" id="emailSignIn" type="email" placeholder="Correo">
       </div> 
