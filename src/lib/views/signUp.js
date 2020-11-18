@@ -5,12 +5,10 @@ export const signUp = () => {
   const signUpView = `
   <div class="signUpContainer">
   <header class="signUpHeader">
-    <div class="signUpTitle">
-    </div>
+    <h2 class="h2Up">SIGN UP</h2>
   </header>
   <section class="signUpForm">
     <form>
-      <h2>SIGN UP</h2>
       <input class="signUpInput" id="name" type="text" placeholder="Nombre de usuario">
       <input  class="signUpInput" id="email" type="email" placeholder="Correo">
       <input  class="signUpInput" id="password" type="password" placeholder="Contraseña">
