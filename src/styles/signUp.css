@@ -16,6 +16,16 @@
     display: flex;
     flex-direction: column;
     max-width: 50%;
+    padding: 1%;
+    border: none;
+    border-color: white;
+    border-radius: 25px;
+    background: linear-gradient( 135deg, purple, wheat)
+}
+.signUpForm h2{
+    font-size: 6vh;
+    font-weight: bold ;
+    color: white;
 }
 .signUpInput {
     border-top: none;
@@ -24,7 +34,11 @@
     border-bottom-color:#FFFFFF;
     margin: 5px;
     margin-bottom: 2vh;
-    background-color: #998F8F;
+    background-color: transparent;
+    font-family: 'Livvic', sans-serif;
+    font-weight: 900;
+    font-size: large;
+    color: white;
 }
 
 .signUpButton {
@@ -42,24 +56,44 @@
 .signUpImg {
     width: 100%;
 }
-
+.iconify { 
+    width: 40vw; 
+    height: 40vh; 
+    padding: 0;
+    border: 0;
+}
 .signUpHeader{
-    background-image: url(../img/streetF.jpg);
-    background-size: 100%;
+    background-image: url("../img/streeFoodShot4.jpg");
     background-repeat: no-repeat;
-    color: white;
+    background-size: 100%;
     margin: 0px;
     height: 35%;
     width: 100%;
     margin-top: 0;
     right: 0;
     left: 0;
-    background-color: #302d2d;
+
+}
+.signUpHeader h1 {
+    color: wheat;
+    background-color: rgba(133, 21, 133, 0.966);
+    width: 90%;
+    height: 50%;
+    padding: 10px;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    border: dotted 7px;
+    border-radius: 50%;
+}
+.signUpHeader::before{
     opacity: 0.85;
 }
 
 .signUpTitle {
-    margin-top: 10vh;
+    font-size: 8vh;
+    font-weight: bold;
+    color : white;
 }
 
 .google {
@@ -123,9 +157,19 @@
 
     .signUpButton {
         width: 50%;
+        background-color: wheat;
+        font-family: 'Livvic', sans-serif;
+        border: none;
+        color: purple;
+        font-weight: bold;
+        font-size: 3vh;
     }
-    .google {
+    .google button {
         margin-top:5%;
+        background-color: none;
+        border: outset 5px green;
+        border-radius: 48%;
+        padding: 5px;
     }
     
     .signUpFooter {

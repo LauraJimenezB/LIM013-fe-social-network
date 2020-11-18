@@ -5,6 +5,8 @@ const signUpView = (`
 <div class="signUpContainer">
   <header class="signUpHeader">
     <div class="signUpTitle">
+    <h1>Street Food</h1>
+    <span class="iconify" data-icon="noto-v1:pot-of-food" data-inline="false"></span>
     </div>
   </header>
   <section class="signUpForm">
@@ -15,9 +17,9 @@ const signUpView = (`
       <input  class="signUpInput" id="password" type="password" placeholder="Contraseña">
       <input class="signUpInput" id="confirmPassword" type="password" placeholder="Confirmar contraseña">
     </form>
-    <button id="mySubmit" class="signUpButton">Sign Up</button>
+    <button id="mySubmit" class="signUpButton">Okay!</button>
     <div class='google'>
-      <button><img src='../img/buscar.svg' width='40px' height='40px'></buttton>
+      <button><img src='../img/buscar.svg' width='40px' height='40px'></button>
     </div>
     <div class="signUpFooter">
       <a>Ya tienes una cuenta creada? Log in<a>
