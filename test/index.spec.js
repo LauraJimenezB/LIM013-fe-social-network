@@ -49,7 +49,7 @@ global.firebase = firebasemock.MockFirebaseSdk(
   () => mockfirestore,
 );
 
-import { signUpUser, signInUser } from '../src/lib/firebase/auth.js';
+import { signUpUser, signInUser, signInGoogle } from '../src/lib/firebase/auth.js';
 
 describe('se crea un usuario', () => {
   it('Debería poder registrarse un usuario', () => signUpUser('pepita@gmail.com', 'abc1d')
@@ -59,5 +59,9 @@ describe('se crea un usuario', () => {
   it('Debería poder ingresar un usuario', () => signInUser('pepita@gmail.com', 'abc1d')
     .then((res) => {
       expect(res.email).toBe('pepita@gmail.com');
+    }));
+  it('Debería poder ingresar con google', () => signInGoogle()
+    .then((res) => {
+      expect(res.isAnonymous).toBe(false);
     }));
 });

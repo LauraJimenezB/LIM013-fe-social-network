@@ -1,5 +1,6 @@
 // Creación de nueva cuenta de usuario
-import { auth } from './init.js';
+const auth = () => firebase.auth();
+
 // Creando usuario con email y contraseña
 export const signUpUser = (email, password) => auth()
   .createUserWithEmailAndPassword(email, password);
@@ -7,7 +8,14 @@ export const signUpUser = (email, password) => auth()
 export const signInUser = (email, password) => auth()
   .signInWithEmailAndPassword(email, password);
 // Trayendo el proveedor de google
+/*
 export const provider = new firebase.auth.GoogleAuthProvider();
 // Trayendo el popUp
 export const signInGoogle = () => auth()
   .signInWithPopup(provider);
+*/
+
+export const signInGoogle = () => {
+  const provider = new firebase.auth.GoogleAuthProvider();
+  return auth().signInWithPopup(provider);
+};

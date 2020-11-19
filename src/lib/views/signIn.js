@@ -1,4 +1,4 @@
-import { logInUser } from '../controllers/signIn-controller.js';
+import { logInWithGoogle, logInUser } from '../controllers/signIn-controller.js';
 
 // eslint-disable-next-line no-unused-vars
 export const signIn = () => {
@@ -23,7 +23,7 @@ export const signIn = () => {
     </form>
     <button id="signIn" class="signInButton">Sign In</button>
     <div class='google'>
-      <button><img class="signInImg" src='../img/buscar.svg' width='40px' height='40px'></buttton>
+      <button id="googleButton"><img src='../img/buscar.svg' width='40px' height='40px'></button>
     </div>
     <div class="footer">
       <p>No tienes una cuenta creada?<a href="#/signUp">Sign up</a></p>
@@ -37,6 +37,11 @@ export const signIn = () => {
   // Obteniendo
   const divElement = document.createElement('div');
   divElement.innerHTML = signInView;
+
+  const googleButton = divElement.querySelector('#googleButton');
+  googleButton.addEventListener('click', () => {
+    logInWithGoogle();
+  });
 
   const signInButton = divElement.querySelector('#signIn');
   signInButton.addEventListener('click', () => {
