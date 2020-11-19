@@ -6,7 +6,7 @@ const firebaseConfig = {
   storageBucket: 'street-food-9698e.appspot.com',
   messagingSenderId: '728672362135',
   appId: '1:728672362135:web:5454da68a206b7950e53d2',
-  measurementId: 'G-SGQSFW9HVF'
+  measurementId: 'G-SGQSFW9HVF',
 };
   // Initialize Firebase
 firebase.initializeApp(firebaseConfig);

@@ -1,5 +1,6 @@
 /* eslint-disable no-unused-vars */
 import { createUser } from '../controllers/signUp-controller.js';
+import { logInWithGoogle } from '../controllers/signIn-controller.js';
 
 export const signUp = () => {
   const signUpView = `
@@ -16,7 +17,7 @@ export const signUp = () => {
     </form>
     <button id="mySubmit" class="signUpButton">Okay!</button>
     <div class='google'>
-      <button><img src='../img/buscar.svg' width='40px' height='40px'></button>
+      <button id="googleButton"><img src='../img/buscar.svg' width='40px' height='40px'></button>
     </div>
     <div class="signUpFooter">
       <p>Ya tienes una cuenta creada?<a href="#/signIn">Sign In</a></p>
@@ -29,6 +30,11 @@ export const signUp = () => {
 
   const divElement = document.createElement('div');
   divElement.innerHTML = signUpView;
+
+  const googleButton = divElement.querySelector('#googleButton');
+  googleButton.addEventListener('click', () => {
+    logInWithGoogle();
+  });
 
   const submitButton = divElement.querySelector('#mySubmit');
   submitButton.addEventListener('click', () => {
