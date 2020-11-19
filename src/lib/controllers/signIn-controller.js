@@ -1,4 +1,4 @@
-import { signInUser, signInGoogle, provider } from '../firebase/auth.js';
+import { signInUser, signInGoogle } from '../firebase/auth.js';
 
 export const logInUser = (email, password) => {
   signInUser(email, password)
@@ -7,7 +7,7 @@ export const logInUser = (email, password) => {
 };
 
 export const logInWithGoogle = () => {
-  signInGoogle(provider).then((result) => {
+  signInGoogle().then((result) => {
     // This gives you a Google Access Token. You can use it to access the Google API.
     const token = result.credential.accessToken;
     // The signed-in user info.

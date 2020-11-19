@@ -1,4 +1,4 @@
-import { firestore } from './init.js';
+const firestore = firebase.firestore;
 
 const db = firestore;
 export const createUserDB = (email, name, userUid, photo) => {
