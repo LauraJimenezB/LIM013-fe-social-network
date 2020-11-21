@@ -45,6 +45,7 @@ export const signUp = () => {
       if (divElement.querySelector('#password').value.length >= 6) {
         const password = divElement.querySelector('#password').value;
         createUser(email, password, name, 'no photo');
+        window.location.hash = '#/signIn';
       } else {
         alert('La contraseña debe tener más de 6 caracteres');
       }
