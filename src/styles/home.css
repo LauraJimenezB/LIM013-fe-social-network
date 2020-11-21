@@ -1,0 +1,89 @@
+.homeContainer{
+    background-color: #FFFFFF;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .homeHeader{
+    background-color: #000000;
+    color: #FFFFFF;
+  }
+  .homeHeader a {
+    text-decoration: none;
+  }
+  .homeHeader h1 {
+    font-family: "Nova Round";
+    color: #902414;
+  
+  }
+  .homeHeader li {
+    list-style: none;
+    font-family: 'Livvic', sans-serif;
+    flex-direction: column;
+  }
+  .main{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+  }
+  .homeHeader ul{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+  }
+  .homeOptions{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 25%;
+  }
+  .homeProfile {
+    display: flex;
+    flex-direction: column;
+    background-color: #000000;
+    color: #FFFFFF;
+    margin-top: 8px;
+    width: 40%;
+    align-items: center;
+  }
+  .homeProfile img {
+   background-color:#902414; 
+  }
+  .homeProfile figure {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .homeProfile figcaption {
+    padding: 5%;
+    font-family: 'Livvic', sans-serif;
+  }
+  .homeEditor{
+    display: flex;
+    flex-direction: column;
+    background-color: #000000;
+    color: #FFFFFF;
+    margin-top: 8px;
+    width: 50%;
+  }
+  .homeEditor button{
+    width: 150px;
+    height: 30px;
+    border-radius: 20px;
+    background-color:white;
+    color: #902414;
+    font-weight:bolder;
+    margin: 2%;
+    font-family: 'Livvic', sans-serif;
+  }
+  .homeEditor textarea{
+    height: 60%;
+    width: 80%;
+    padding: 10px;
+    margin: auto;
+    font-family: 'Livvic', sans-serif;
+  }
+  .postButtons {
+    display: flex;
+    flex-direction: row;
+    margin: 5%;
+  }
