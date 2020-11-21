@@ -31,4 +31,7 @@ export const home = () => {
 </div>
 </div>
 `;
+  const divElement = document.createElement('div');
+  divElement.innerHTML = homeView;
+  return divElement;
 };

@@ -13,6 +13,8 @@ export const changeView = (route) => {
     { return container.appendChild(components.signInTemplate()); }
     case '#/signUp':
     { return container.appendChild(components.signUpTemplate()); }
+    case '#/home':
+    { return container.appendChild(components.homeTemplate()); }
     default:
       break;
   }

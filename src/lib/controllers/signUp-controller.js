@@ -5,6 +5,7 @@ export const createUser = (email, password, name, photo) => {
   signUpUser(email, password)
     .then((res) => {
       createUserDB(email, name, res.user.uid, photo);
+      window.location.hash = '#/signIn';
     })
     .catch((error) => {
       const errorCode = error.code;
