@@ -1,15 +1,18 @@
 export const home = () => {
   const homeView = `<div class="homeContainer">
 <header class="homeHeader">
-  <nav>
-    <ul>
-      <li><a href="#"><h1>STREET FOOD</h1></a></li>
-      <div class="homeOptions">
-      <li><a>Sign In</a></li>
-      <li><a>Sign Up</a></li>
-      </div>
-    </ul>
-  </nav>
+    <nav>
+      <input type="checkbox" id="check">
+      <label for="check" class="checkbtn">
+        <i class="fas fa-bars"><img src='../img/vectorpaint.svg' width='40px' height='40px'></i>
+      </label>
+      <label class="logo">Street Food</label>
+      <ul>
+        <li><a class="active" href="#">Home</a></li>
+        <li><a href="#/signIn">Log In</a></li>
+        <li><a href="#/signUp">Sign Up</a></li>
+      </ul>
+    </nav>
 </header>
 <div class="main">
   <aside class="homeProfile">
@@ -31,7 +34,9 @@ export const home = () => {
 </div>
 </div>
 `;
+
   const divElement = document.createElement('div');
   divElement.innerHTML = homeView;
+
   return divElement;
 };
