@@ -1,3 +1,5 @@
+import { savePosts } from '../firebase/firestore.js';
+
 export const home = () => {
   const homeView = `<div class="homeContainer">
 <header class="homeHeader">
@@ -22,10 +24,10 @@ export const home = () => {
     <figcaption>Username</figcaption>
   </aside>
   <section class="homeEditor">
-    <textarea>Escribe aquí tus opiniones</textarea>
+    <textarea id="textValue" placeholder="Escribe aquí tus opiniones"></textarea>
     <div class="postButtons">
     <button>Add Image</button>
-    <button>Send</button>
+    <button id="send">Send</button>
     </div>
   </section>
   <section>
@@ -37,6 +39,12 @@ export const home = () => {
 
   const divElement = document.createElement('div');
   divElement.innerHTML = homeView;
-
+  // Obteniendo el valor del textarea
+  const textValue = divElement.querySelector('#textValue');
+  // Subiendo el valor a firestore
+  const sendButton = divElement.querySelector('#send');
+  sendButton.addEventListener('click', () => {
+    savePosts(textValue.value);
+  });
   return divElement;
 };

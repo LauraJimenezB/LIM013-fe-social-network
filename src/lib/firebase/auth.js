@@ -7,15 +7,17 @@ export const signUpUser = (email, password) => auth()
 // Entrando a la cuenta
 export const signInUser = (email, password) => auth()
   .signInWithEmailAndPassword(email, password);
-// Trayendo el proveedor de google
-/*
-export const provider = new firebase.auth.GoogleAuthProvider();
-// Trayendo el popUp
-export const signInGoogle = () => auth()
-  .signInWithPopup(provider);
-*/
-
 export const signInGoogle = () => {
   const provider = new firebase.auth.GoogleAuthProvider();
   return auth().signInWithPopup(provider);
+};
+// Trayendo el usuario
+export const bringingUser = () => {
+  auth().onAuthStateChanged((user) => {
+    if (user) {
+    // User is signed in.
+    } else {
+    // No user is signed in.
+    }
+  });
 };
