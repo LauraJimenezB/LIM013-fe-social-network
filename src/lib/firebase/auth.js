@@ -12,6 +12,7 @@ export const signInGoogle = () => {
   return auth().signInWithPopup(provider);
 };
 // Trayendo el usuario
-export const getUserUid = () => {
+/* export const getUserUid = () => {
   auth().onAuthStateChanged((user) => user.uid);
 };
+ */

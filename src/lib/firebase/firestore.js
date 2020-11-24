@@ -11,14 +11,18 @@ export const createUserDB = (email, name, userUid, photo) => {
     .then((response) => console.log(response))
     .catch((error) => console.log('Hubo un error', error));
 };
-export const savePosts = (textValue, titleValue, photoValue, userUid) => {
+export const savePosts = (textValue, photoValue) => {
+  const user = firebase.auth().currentUser;
+  if (!user) {
+    console.log('No hay user');
+    return;
+  }
   const data = {
-    title: titleValue,
     text: textValue,
     photo: photoValue,
-    uid: userUid,
+    uid: user.uid,
   };
-  return firestore().collection('posts').add(data)
+  firestore().collection('posts').add(data)
     .then((response) => console.log(response))
     .catch((error) => console.log(error));
 };
