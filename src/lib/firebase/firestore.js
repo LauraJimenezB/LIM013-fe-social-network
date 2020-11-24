@@ -16,8 +16,9 @@ export const savePosts = (textValue, titleValue, photoValue, userUid) => {
     title: titleValue,
     text: textValue,
     photo: photoValue,
+    uid: userUid,
   };
-  return firestore().collection('posts').doc(userUid).set(data)
+  return firestore().collection('posts').add(data)
     .then((response) => console.log(response))
     .catch((error) => console.log(error));
 };

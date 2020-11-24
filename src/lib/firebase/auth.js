@@ -12,12 +12,6 @@ export const signInGoogle = () => {
   return auth().signInWithPopup(provider);
 };
 // Trayendo el usuario
-export const bringingUser = () => {
-  auth().onAuthStateChanged((user) => {
-    if (user) {
-    // User is signed in.
-    } else {
-    // No user is signed in.
-    }
-  });
+export const getUserUid = () => {
+  auth().onAuthStateChanged((user) => user.uid);
 };

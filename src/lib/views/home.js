@@ -1,4 +1,5 @@
 import { savePosts } from '../firebase/firestore.js';
+import { getUserUid } from '../firebase/auth.js';
 
 export const home = () => {
   const homeView = `<div class="homeContainer">
@@ -44,7 +45,10 @@ export const home = () => {
   // Subiendo el valor a firestore
   const sendButton = divElement.querySelector('#send');
   sendButton.addEventListener('click', () => {
-    savePosts(textValue.value);
+    const userUid = '1';
+    const titleValue = '';
+    const photoValue = '';
+    savePosts(textValue.value, titleValue, photoValue, userUid);
   });
   return divElement;
 };
