@@ -1,5 +1,4 @@
 import { post } from '../controllers/home-controller.js';
-import { signInGoogle } from '../firebase/auth.js';
 
 const firestore = () => firebase.firestore();
 const db = firestore;
