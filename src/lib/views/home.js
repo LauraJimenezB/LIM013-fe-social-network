@@ -1,4 +1,5 @@
 import { post } from '../controllers/home-controller.js';
+import { printPost } from '../firebase/firestore.js';
 
 export const home = () => {
   const homeView = `<div class="homeContainer">
@@ -30,7 +31,7 @@ export const home = () => {
     <button id="send">Send</button>
     </div>
   </section>
-  <section>
+  <section id='publicPost'>
     <!--Area de publicaciones-->
   </section>
 </div>
@@ -46,5 +47,18 @@ export const home = () => {
   sendButton.addEventListener('click', () => {
     post(textValue.value);
   });
+  const postArea = divElement.querySelector('#publicPost');
+
+  const posts = printPost();
+  postArea.innerHTML = posts;
+  console.log(posts);
   return divElement;
 };
+/*
+const postsTemplate = () => {
+  const newPost = document.createElement('div');
+  newPost.innerHTML = `
+
+  `;
+};
+*/
