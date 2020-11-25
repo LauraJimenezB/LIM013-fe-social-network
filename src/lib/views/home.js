@@ -70,7 +70,6 @@ export const home = () => {
 `;
   // PROFILE
   const user = firebase.auth().currentUser;
-  // console.log(user);
   /*
   if (user.isAnonymous === false) {
     const docRef = db().collection('users').doc('7VeaZPrqUnPbWLEGxJ9mmbZUv7Y2');
