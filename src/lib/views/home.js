@@ -25,6 +25,7 @@ export const home = () => {
       <img src="https://cdn.icon-icons.com/icons2/1674/PNG/512/person_110935.png" width="100px" height="100px">
     </figure>
     <figcaption>Username</figcaption>
+    <span id="username"></span>
   </aside>
   <div class="posts">
   <section class="homeEditor">
@@ -51,6 +52,27 @@ export const home = () => {
   sendButton.addEventListener('click', () => {
     post(textValue.value);
   });
+
+  // PROFILE
+  const user = firebase.auth().currentUser;
+
+  if (user) {
+    console.log('user is signed');
+    const docRef = db().collection('users').doc(user.uid);
+    docRef.get().then((doc) => {
+      if (doc.exists) {
+        console.log('Document data:', doc.data());
+        const username = divElement.querySelector('#username');
+        username.innerHTML = doc.data().name;
+      } else {
+        // doc.data() will be undefined in this case
+        console.log('No such document!');
+      }
+    }).catch((error) => {
+      console.log('Error getting document:', error);
+    });
+  }
+  // POSTS
   const postArea = divElement.querySelector('#publicPost');
   const postTemplate = `
   <div>
@@ -67,26 +89,6 @@ export const home = () => {
   <div id="comment">
   </div>
 `;
-  // PROFILE
-  const user = firebase.auth().currentUser;
-  /*
-  if (user.isAnonymous === false) {
-    const docRef = db().collection('users').doc('7VeaZPrqUnPbWLEGxJ9mmbZUv7Y2');
-  }
-  */
-  const docRef = db().collection('users').doc(user.uid);
-  docRef.get().then((doc) => {
-    if (doc.exists) {
-      console.log('Document data:', doc.data());
-    } else {
-      // doc.data() will be undefined in this case
-      console.log('No such document!');
-    }
-  }).catch((error) => {
-    console.log('Error getting document:', error);
-  });
-
-  // POSTS
   function showPosts(doc) {
     const divPost = document.createElement('div');
     divPost.classList.add('divPost');
@@ -107,13 +109,6 @@ export const home = () => {
       snapshot.docs.forEach((doc) => { showPosts(doc); });
     })
     .catch((e) => console.log('error', e));
+
   return divElement;
 };
-/*
-const postsTemplate = () => {
-  const newPost = document.createElement('div');
-  newPost.innerHTML = `
-
-  `;
-};
-*/
