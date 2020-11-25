@@ -104,6 +104,11 @@
     padding: 5%;
     font-family: 'Livvic', sans-serif;
   }
+  .posts {
+    display:flex;
+    width: 100%;
+    flex-direction: column;
+  }
   .homeEditor{
     display: flex;
     flex-direction: column;
@@ -137,6 +142,11 @@
     margin: 5%;
   }
   
+.divPost{ 
+  border-color: rgb(34, 34, 34);
+  margin: 5px;
+}
+
   @media (min-width: 858px){
     label.logo{
       font-size: 30px;
@@ -208,9 +218,24 @@
       height: 100vh;
     }
     .homeEditor{
+      width:100%;
+      margin-right: 0%;
+      height: 20vh;
+      padding-top: 5%;
+      padding-bottom: 0%;
+    }
+    .textArea {
+      height:10vh;
+    }
+
+    .postButtons {
+      margin: 1%;
+      padding: 0%;
+    }
+    .posts {
       width:70%;
       margin-right: 0%;
-      height: 30vh;
+      height: 100vh;
     }
   }
 @media(max-width: 420px){
