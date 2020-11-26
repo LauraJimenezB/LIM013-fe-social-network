@@ -16,9 +16,6 @@ export const signUp = () => {
       <input class="signUpInput" id="confirmPassword" type="password" placeholder="Confirmar contraseña">
     </form>
     <button id="mySubmit" class="signUpButton">Okay!</button>
-    <div class='google'>
-      <button id="googleButton"><img src='../img/buscar.svg' width='40px' height='40px'></button>
-    </div>
     <div class="signUpFooter">
       <p>Ya tienes una cuenta creada?<a href="#/signIn">Sign In</a></p>
     </div>
@@ -30,11 +27,6 @@ export const signUp = () => {
 
   const divElement = document.createElement('div');
   divElement.innerHTML = signUpView;
-
-  const googleButton = divElement.querySelector('#googleButton');
-  googleButton.addEventListener('click', () => {
-    logInWithGoogle();
-  });
 
   const submitButton = divElement.querySelector('#mySubmit');
   submitButton.addEventListener('click', () => {

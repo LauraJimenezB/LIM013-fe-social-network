@@ -141,10 +141,50 @@
     justify-content: flex-end;
     margin: 5%;
   }
-  
+ /* ---------------------POSTS------------------------ */
 .divPost{ 
   border-color: rgb(34, 34, 34);
   margin: 5px;
+}
+.postCard {
+  padding: 2vw;
+  border: 5px solid black;
+  border-radius: 20px ;
+  margin: 2vw 5vw;
+}
+.postUserInformation {
+  font-family: "Livvic";
+  padding: 10px 20px;
+  background-color: black;
+  color: white;
+  border-radius: 5px;
+  margin: 5px;
+  text-align: center;
+}
+.postUserInformation span {
+  margin: 0px 3vw;
+}
+.editDeletePrivacy {
+  margin: 5px;
+}
+.editDeletePrivacy button {
+  background-color: white;
+  color: black;
+  font-family: 'Livvic', open-sans;
+  border-color: rgb(71, 68, 68);
+  border-radius: 5px;
+  font-size: 15px;
+  font-weight: bold;
+}
+#likeButton{
+  border: outset black;
+  border-radius: 20%;
+  padding: 3px 5px;
+  font-size: 15px;
+}
+#like{
+  width: 20px;
+  height: 20px;
 }
 
   @media (min-width: 858px){
