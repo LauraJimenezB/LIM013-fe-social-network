@@ -1,4 +1,4 @@
-import { post } from '../controllers/home-controller.js';
+import { createPost, post } from '../controllers/home-controller.js';
 
 const firestore = () => firebase.firestore();
 const db = firestore;
@@ -35,7 +35,7 @@ export const home = () => {
     <button id="send">Send</button>
     </div>
   </section>
-  <section id='publicPost'>
+  <section class='postArea' id='publicPost'>
     <!--Area de publicaciones-->
   </section>
   </div>
@@ -74,7 +74,12 @@ export const home = () => {
   }
   // POSTS
   const postArea = divElement.querySelector('#publicPost');
-  const postTemplate = `
+
+  function showPosts(doc) {
+    const divPost = document.createElement('div');
+    divPost.classList.add('divPost');
+
+    const postTemplate = `
   <div class="postCard">
     <div class="postUserInformation">
       <span>Username</span>
@@ -85,32 +90,20 @@ export const home = () => {
       <button>Eliminar</button>
       <button>Privado/pública</button>
     </div>
-    <div id="contentPost"></div>
+    <div id="contentPost" class="contentPost"></div>
     <button id="likeButton"><span id="like" class="iconify" data-icon="ant-design:like-twotone" data-inline="false"></span> Like</button>
     <div id="comment">
     </div>
   </div>
 `;
-  function showPosts(doc) {
-    const divPost = document.createElement('div');
-    divPost.classList.add('divPost');
-    divPost.innerHTML = postTemplate;
-    /*
-    const content = divElement.querySelector('#contentPost');
-    content.textContent = doc.data().text;
-    */
-    const contentPost = document.createElement('span');
 
-    divElement.setAttribute('data-id', doc.uid);
-    contentPost.textContent = doc.data().text;
-    divPost.appendChild(contentPost);
+    divPost.innerHTML = postTemplate;
+    const content = divPost.querySelector('#contentPost');
+    content.textContent = doc.data().text;
+    divPost.setAttribute('data-id', doc.uid);
     postArea.appendChild(divPost);
   }
-  db().collection('posts').get()
-    .then((snapshot) => {
-      snapshot.docs.forEach((doc) => { showPosts(doc); });
-    })
-    .catch((e) => console.log('error', e));
+  createPost(showPosts);
 
   return divElement;
 };

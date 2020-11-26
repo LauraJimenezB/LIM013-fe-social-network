@@ -12,6 +12,7 @@ export const createUserDB = (email, name, userUid, photo) => {
     .then((response) => console.log(response))
     .catch((error) => console.log('Hubo un error', error));
 };
+
 export const savePosts = (textValue, photoValue) => {
   const user = firebase.auth().currentUser;
   if (!user) {
