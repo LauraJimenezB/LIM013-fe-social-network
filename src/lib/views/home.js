@@ -31,7 +31,7 @@ export const home = () => {
   <section class="homeEditor">
     <textarea id="textValue" class="textArea" placeholder="Escribe aquí tus opiniones"></textarea>
     <div class="postButtons">
-    <button>Add Image</button>
+    <input type="file" id="imageFile">
     <button id="send">Send</button>
     </div>
   </section>
@@ -42,7 +42,6 @@ export const home = () => {
 </div>
 </div>
 `;
-
   const divElement = document.createElement('div');
   divElement.innerHTML = homeView;
   // Obteniendo el valor del textarea
@@ -68,7 +67,12 @@ export const home = () => {
     editStatus = false;
     sendButton.innerText = 'Send';
   });
-
+  // SUBIR IMAGENES
+  const uploadImage = () => {
+    const file = divElement.querySelector('#imageFile');
+    console.log(file);
+  };
+  divElement.querySelector('#imageFile').addEventListener('click', uploadImage())
   // PROFILE
   const user = firebase.auth().currentUser;
 
@@ -117,7 +121,6 @@ export const home = () => {
     </div>
   
 `;
-
     divPost.innerHTML = postTemplate;
     const content = divPost.querySelector('#contentPost');
     content.textContent = doc.data().text;
@@ -167,6 +170,7 @@ export const home = () => {
       }
     });
   });
+  db().collection('posts').orderBy('name', 'desc');
   createPost(showPosts);
   return divElement;
 };

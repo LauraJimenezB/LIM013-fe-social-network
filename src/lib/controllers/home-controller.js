@@ -8,6 +8,7 @@ export const post = (text) => {
   const photo = 'photo';
   savePosts(text, photo);
 };
+
 /*
 export const createPost = (showPosts) => db().collection('posts').onSnapshot(snapshot => {
   let changes = snapshot.docChanges();
