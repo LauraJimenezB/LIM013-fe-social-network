@@ -8,21 +8,19 @@ export const post = (text) => {
   const photo = 'photo';
   savePosts(text, photo);
 };
-/*
-export const createPost = (showPosts) => db().collection('posts').onSnapshot(snapshot => {
-  let changes = snapshot.docChanges();
+
+export const createPost = (showPosts, containerPost) => db().collection('posts').onSnapshot((snapshot) => {
+  const changes = snapshot.docChanges();
   changes.forEach((change) => {
     if (change.type === 'added') {
       showPosts(change.doc);
     } else if (change.type === 'removed') {
-      let publicPost = postArea.querySelector('[data-id=]' + change.doc.id + ']');
+      const thisPost = containerPost.querySelector('[data-id=\'' + change.doc.id + '\']');
+      containerPost.removeChild(thisPost);
+    } else if (change.type === 'modified') {
+      const thisPost = containerPost.querySelector('[data-id=\'' + change.doc.id + '\']');
+      containerPost.removeChild(thisPost);
+      showPosts(change.doc);
     }
   });
 });
-*/
-/*db().collection('posts').get()
-  .then((snapshot) => {
-    db().collection('posts').orderBy('date', 'asc');
-    snapshot.docs.forEach((doc) => showPosts(doc));
-  })
-  .catch((e) => console.log('error', e));*/
