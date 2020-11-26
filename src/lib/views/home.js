@@ -75,18 +75,20 @@ export const home = () => {
   // POSTS
   const postArea = divElement.querySelector('#publicPost');
   const postTemplate = `
-  <div>
-    <span>Username</span>
-    <span>Fecha</span>
-  </div>
-  <div>
-    <button>Editar</button>
-    <button>Eliminar</button>
-    <button>Privado/pública</button>
-  </div>
-  <div id="contentPost"></div>
-  <button>Like</button>
-  <div id="comment">
+  <div class="postCard">
+    <div class="postUserInformation">
+      <span>Username</span>
+      <span>Fecha</span>
+    </div>
+    <div class="editDeletePrivacy">
+      <button>Editar</button>
+      <button>Eliminar</button>
+      <button>Privado/pública</button>
+    </div>
+    <div id="contentPost"></div>
+    <button id="likeButton"><span id="like" class="iconify" data-icon="ant-design:like-twotone" data-inline="false"></span> Like</button>
+    <div id="comment">
+    </div>
   </div>
 `;
   function showPosts(doc) {
