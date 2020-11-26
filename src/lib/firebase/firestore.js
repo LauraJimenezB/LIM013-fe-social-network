@@ -15,6 +15,7 @@ export const createUserDB = (email, name, userUid, photo) => {
 
 export const savePosts = (textValue, photoValue) => {
   const user = firebase.auth().currentUser;
+  const date = new Date();
   if (!user) {
     console.log('No hay user');
     return;
@@ -23,6 +24,7 @@ export const savePosts = (textValue, photoValue) => {
     text: textValue,
     photo: photoValue,
     uid: user.uid,
+    date,
   };
   firestore().collection('posts').add(data)
     .then((response) => console.log(response))

@@ -74,7 +74,6 @@ export const home = () => {
   }
   // POSTS
   const postArea = divElement.querySelector('#publicPost');
-
   function showPosts(doc) {
     const divPost = document.createElement('div');
     divPost.classList.add('divPost');
