@@ -145,9 +145,6 @@
  /* ---------------------POSTS------------------------ */
 .divPost{ 
   border-color: rgb(34, 34, 34);
-  margin: 5px;
-}
-.postCard {
   padding: 2vw;
   border: 5px solid black;
   border-radius: 20px ;
@@ -273,10 +270,13 @@
       padding-bottom: 0%;
     }
     .divPost {
-      width:100%;
+      padding: none;
+      width: 90%;
+      padding: 0.5vw;
+      border: 5px solid black;
+      border-radius: 10px ;
       margin-left: auto;
       margin-right: auto;
-      padding: none;
     }
     .postArea {
       width:100%;
@@ -302,14 +302,7 @@
       margin-right: 0%;
       height: 100vh;
     }
-    .postCard {
-      width: 90%;
-      padding: 0.5vw;
-      border: 5px solid black;
-      border-radius: 10px ;
-      margin-left: auto;
-      margin-right: auto;
-    }
+    
   }
 @media(max-width: 420px){
   label.logo{
