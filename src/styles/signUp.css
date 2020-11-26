@@ -12,6 +12,9 @@
     text-align: center;
     align-items: center;
 }
+h2 {
+    background-color: rgba(34, 31, 31, 0.329);
+}
 .signUpForm {
     display: flex;
     flex-direction: column;
@@ -52,7 +55,7 @@
     border: 0;
 }
 .signUpHeader{
-    background-image: url(../img/wallp2.jpg);
+    background-image: url(../img/streeFoodShot6.jpg);
     background-size: 100%;
     background-repeat: no-repeat;
     margin: 0px;
