@@ -1,4 +1,4 @@
-import { post } from '../controllers/home-controller.js';
+import { createPost, post } from '../controllers/home-controller.js';
 
 const firestore = () => firebase.firestore();
 const db = firestore;
@@ -101,7 +101,7 @@ export const home = () => {
     const postTemplate = `
   
     <div class="postUserInformation">
-      <span>Username</span>
+      <span id='123'>Username</span>
       <span>Fecha</span>
     </div>
     <div class="editDeletePrivacy">
@@ -137,11 +137,6 @@ export const home = () => {
 
     // EDIT
     const editPost = divPost.querySelector('#edit');
-    /*
-    const editArea = divPost.querySelector('#editArea');
-    const editText = divPost.querySelector('#textEdit');
-    const sendEdit = divPost.querySelector('#sendEdit');
-    */
     editPost.addEventListener('click', (e) => {
       e.stopPropagation();
       // editArea.style.display = 'block';
@@ -152,25 +147,8 @@ export const home = () => {
       textValue.value = getPost.text;
     });
   }
-  const createPost = (showPosts) => db().collection('posts').onSnapshot((snapshot) => {
-    let changes = snapshot.docChanges();
-    changes.forEach((change) => {
-      console.log(change.type);
-      if (change.type === 'added') {
-        showPosts(change.doc);
-      } else if (change.type === 'removed') {
-        let thisPost = postArea.querySelector('[data-id=' + change.doc.id + ']');
-        // postArea.querySelector('[data-id=' + change.doc.id + ']');
-        postArea.removeChild(thisPost);
-      } else if (change.type === 'modified') {
-        let thisPost = postArea.querySelector('[data-id=' + change.doc.id + ']');
-        // postArea.querySelector('[data-id=' + change.doc.id + ']');
-        postArea.removeChild(thisPost);
-        showPosts(change.doc);
-      }
-    });
-  });
-  db().collection('posts').orderBy('name', 'desc');
-  createPost(showPosts);
+
+  const postA = divElement.querySelector('#publicPost');
+  createPost(showPosts, postA);
   return divElement;
 };
