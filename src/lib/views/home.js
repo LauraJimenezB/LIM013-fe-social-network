@@ -1,4 +1,4 @@
-import { post } from '../controllers/home-controller.js';
+import { createPost, post } from '../controllers/home-controller.js';
 
 const firestore = () => firebase.firestore();
 const db = firestore;
@@ -74,7 +74,11 @@ export const home = () => {
   }
   // POSTS
   const postArea = divElement.querySelector('#publicPost');
-  const postTemplate = `
+  function showPosts(doc) {
+    const divPost = document.createElement('div');
+    divPost.classList.add('divPost');
+
+    const postTemplate = `
   <div>
     <span>Username</span>
     <span>Fecha</span>
@@ -89,26 +93,21 @@ export const home = () => {
   <div id="comment">
   </div>
 `;
-  function showPosts(doc) {
-    const divPost = document.createElement('div');
-    divPost.classList.add('divPost');
+
     divPost.innerHTML = postTemplate;
-    /*
-    const content = divElement.querySelector('#contentPost');
+    const content = divPost.querySelector('#contentPost');
     content.textContent = doc.data().text;
-    */
+    /*
     const contentPost = document.createElement('span');
 
     divElement.setAttribute('data-id', doc.uid);
     contentPost.textContent = doc.data().text;
     divPost.appendChild(contentPost);
+    */
+    divPost.appendChild(content);
     postArea.appendChild(divPost);
   }
-  db().collection('posts').get()
-    .then((snapshot) => {
-      snapshot.docs.forEach((doc) => { showPosts(doc); });
-    })
-    .catch((e) => console.log('error', e));
+  createPost(showPosts);
 
   return divElement;
 };
