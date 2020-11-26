@@ -30,12 +30,3 @@ export const savePosts = (textValue, photoValue) => {
     .then((response) => console.log(response))
     .catch((error) => console.log(error));
 };
-/*
-export const printPost = () => {
-  db().collection('posts').get()
-    .then((snapshot) => {
-      snapshot.docs.forEach((doc) => showPosts(doc));
-    })
-    .catch((e) => console.log('error', e));
-};
-*/
