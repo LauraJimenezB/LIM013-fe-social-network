@@ -107,6 +107,7 @@
   .posts {
     display:flex;
     width: 100%;
+    height: 1''vh;
     flex-direction: column;
   }
   .homeEditor{
@@ -166,6 +167,9 @@
 }
 .editDeletePrivacy {
   margin: 5px;
+  width:98%;
+  display:flex;
+  justify-content: flex-end;
 }
 .editDeletePrivacy button {
   background-color: white;
@@ -175,6 +179,10 @@
   border-radius: 5px;
   font-size: 15px;
   font-weight: bold;
+  margin-left: 5px;
+}
+.contentPost {
+  margin: 10px;
 }
 #likeButton{
   border: outset black;
@@ -211,7 +219,7 @@
     }
 
     ul{
-      position: fixed;
+      position: absolute;
       width: 30%;
       height: 10vh;
       background: #050505;
@@ -224,6 +232,7 @@
     nav ul{
       float: right;
       margin-right: 20px;
+      height:8vh;
     }
     nav ul li{
       display: inline-block;
@@ -233,7 +242,6 @@
     nav ul li a{
       color: white;
       font-size: 17px;
-      padding: 7px 13px;
       border-radius: 3px;
       text-transform: uppercase;
     }
@@ -264,18 +272,43 @@
       padding-top: 5%;
       padding-bottom: 0%;
     }
+    .divPost {
+      width:100%;
+      margin-left: auto;
+      margin-right: auto;
+      padding: none;
+    }
+    .postArea {
+      width:100%;
+      margin: none;
+      padding: none;
+    }
     .textArea {
       height:10vh;
+      width:70%;
     }
 
     .postButtons {
-      margin: 1%;
+      width:80%;
+      margin-top: 0%;
+      margin-bottom: 0%;
+      margin-right: auto;
+      margin-left: auto;
       padding: 0%;
+
     }
     .posts {
       width:70%;
       margin-right: 0%;
       height: 100vh;
+    }
+    .postCard {
+      width: 90%;
+      padding: 0.5vw;
+      border: 5px solid black;
+      border-radius: 10px ;
+      margin-left: auto;
+      margin-right: auto;
     }
   }
 @media(max-width: 420px){

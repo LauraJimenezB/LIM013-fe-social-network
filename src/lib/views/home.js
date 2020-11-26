@@ -35,7 +35,7 @@ export const home = () => {
     <button id="send">Send</button>
     </div>
   </section>
-  <section id='publicPost'>
+  <section class='postArea' id='publicPost'>
     <!--Area de publicaciones-->
   </section>
   </div>
@@ -90,7 +90,7 @@ export const home = () => {
       <button>Eliminar</button>
       <button>Privado/pública</button>
     </div>
-    <div id="contentPost"></div>
+    <div id="contentPost" class="contentPost"></div>
     <button id="likeButton"><span id="like" class="iconify" data-icon="ant-design:like-twotone" data-inline="false"></span> Like</button>
     <div id="comment">
     </div>
@@ -100,14 +100,7 @@ export const home = () => {
     divPost.innerHTML = postTemplate;
     const content = divPost.querySelector('#contentPost');
     content.textContent = doc.data().text;
-    /*
-    const contentPost = document.createElement('span');
-
-    divElement.setAttribute('data-id', doc.uid);
-    contentPost.textContent = doc.data().text;
-    divPost.appendChild(contentPost);
-    */
-    divPost.appendChild(content);
+    divPost.setAttribute('data-id', doc.uid);
     postArea.appendChild(divPost);
   }
   createPost(showPosts);
