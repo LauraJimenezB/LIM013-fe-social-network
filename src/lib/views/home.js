@@ -1,4 +1,4 @@
-import { createPost, post } from '../controllers/home-controller.js';
+import { post } from '../controllers/home-controller.js';
 
 const firestore = () => firebase.firestore();
 const db = firestore;
@@ -144,17 +144,29 @@ export const home = () => {
       // editArea.style.display = 'block';
       editStatus = true;
       sendButton.innerText = 'Update';
-      console.log(editStatus);
       id = e.target.parentElement.parentElement.getAttribute('data-id');
       const getPost = doc.data();
       textValue.value = getPost.text;
     });
   }
-
-  createPost(showPosts);
-  window.addEventListener('DOMContentLoaded', () => {
-    showPosts();
+  const createPost = (showPosts) => db().collection('posts').onSnapshot((snapshot) => {
+    let changes = snapshot.docChanges();
+    changes.forEach((change) => {
+      console.log(change.type);
+      if (change.type === 'added') {
+        showPosts(change.doc);
+      } else if (change.type === 'removed') {
+        let thisPost = postArea.querySelector('[data-id=' + change.doc.id + ']');
+        // postArea.querySelector('[data-id=' + change.doc.id + ']');
+        postArea.removeChild(thisPost);
+      } else if (change.type === 'modified') {
+        let thisPost = postArea.querySelector('[data-id=' + change.doc.id + ']');
+        // postArea.querySelector('[data-id=' + change.doc.id + ']');
+        postArea.removeChild(thisPost);
+        showPosts(change.doc);
+      }
+    });
   });
-
+  createPost(showPosts);
   return divElement;
 };
