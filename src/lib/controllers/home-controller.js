@@ -11,6 +11,7 @@ export const post = (text) => {
 
 export const createPost = (showPosts) => db().collection('posts').get()
   .then((snapshot) => {
+    db().collection('posts').orderBy('date', 'asc');
     snapshot.docs.forEach((doc) => showPosts(doc));
   })
   .catch((e) => console.log('error', e));
