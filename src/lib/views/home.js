@@ -46,11 +46,27 @@ export const home = () => {
   const divElement = document.createElement('div');
   divElement.innerHTML = homeView;
   // Obteniendo el valor del textarea
-  const textValue = divElement.querySelector('#textValue');
+  let textValue = divElement.querySelector('#textValue');
   // Subiendo el valor a firestore
   const sendButton = divElement.querySelector('#send');
+
+  let editStatus = false;
+  let id = '';
+  const updatePost = (id, updatedText) => {
+    db().collection('posts').doc(id).update(updatedText);
+  };
+
   sendButton.addEventListener('click', () => {
-    post(textValue.value);
+    if (!editStatus) {
+      post(textValue.value);
+    } else {
+      updatePost (id, {
+        text: textValue.value,
+      });
+    }
+    textValue.value = '';
+    editStatus = false;
+    sendButton.innerText = 'Send';
   });
 
   // PROFILE
@@ -80,30 +96,66 @@ export const home = () => {
     divPost.classList.add('divPost');
 
     const postTemplate = `
-  <div class="postCard">
+  
     <div class="postUserInformation">
       <span>Username</span>
       <span>Fecha</span>
     </div>
     <div class="editDeletePrivacy">
-      <button>Editar</button>
-      <button>Eliminar</button>
+      <button id='edit'>Editar</button>
+      <button id='delete'>Eliminar</button>
       <button>Privado/pública</button>
+    </div>
+    <div id='editArea' style='display: none'>
+      <textarea id="textEdit" class="textArea" placeholder="Escribe aquí tus opiniones"></textarea>
+      <div class="buttonsEdit">
+        <button id="sendEdit">Editar</button>
+    </div>
     </div>
     <div id="contentPost" class="contentPost"></div>
     <button id="likeButton"><span id="like" class="iconify" data-icon="ant-design:like-twotone" data-inline="false"></span> Like</button>
     <div id="comment">
     </div>
-  </div>
+  
 `;
 
     divPost.innerHTML = postTemplate;
     const content = divPost.querySelector('#contentPost');
     content.textContent = doc.data().text;
-    divPost.setAttribute('data-id', doc.uid);
+    divPost.setAttribute('data-id', doc.id);
     postArea.appendChild(divPost);
+
+    // DELETE
+    const deletePost = divPost.querySelector('#delete');
+    deletePost.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const id = e.target.parentElement.parentElement.getAttribute('data-id');
+      db().collection('posts').doc(id).delete();
+    });
+
+    // EDIT
+    const editPost = divPost.querySelector('#edit');
+    /*
+    const editArea = divPost.querySelector('#editArea');
+    const editText = divPost.querySelector('#textEdit');
+    const sendEdit = divPost.querySelector('#sendEdit');
+    */
+    editPost.addEventListener('click', (e) => {
+      e.stopPropagation();
+      // editArea.style.display = 'block';
+      editStatus = true;
+      sendButton.innerText = 'Update';
+      console.log(editStatus);
+      id = e.target.parentElement.parentElement.getAttribute('data-id');
+      const getPost = doc.data();
+      textValue.value = getPost.text;
+    });
   }
+
   createPost(showPosts);
+  window.addEventListener('DOMContentLoaded', () => {
+    showPosts();
+  });
 
   return divElement;
 };
