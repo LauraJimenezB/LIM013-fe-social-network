@@ -13,7 +13,7 @@ export const createUserDB = (email, name, userUid, photo) => {
     .catch((error) => console.log('Hubo un error', error));
 };
 
-export const savePosts = (textValue, photoValue) => {
+export const savePosts = (textValue, photoValue, statusValue) => {
   const user = firebase.auth().currentUser;
   const date = new Date();
   if (!user) {
@@ -25,6 +25,7 @@ export const savePosts = (textValue, photoValue) => {
     photo: photoValue,
     uid: user.uid,
     date,
+    status: statusValue,
   };
   firestore().collection('posts').add(data)
     .then((response) => console.log(response))
