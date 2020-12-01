@@ -11,9 +11,4 @@ export const firebaseInit = () => {
   };
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
-/*
-const auth = firebase.auth;
-const firestore = firebase.firestore;
-export { auth, firestore };
-*/
 };

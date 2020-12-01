@@ -15,10 +15,10 @@ export const createPost = (showPosts, containerPost) => db().collection('posts')
     if (change.type === 'added') {
       showPosts(change.doc);
     } else if (change.type === 'removed') {
-      const thisPost = containerPost.querySelector('[data-id=\'' + change.doc.id + '\']');
+      const thisPost = containerPost.querySelect(`[data-id='${change.doc.id}']`);
       containerPost.removeChild(thisPost);
     } else if (change.type === 'modified') {
-      const thisPost = containerPost.querySelector('[data-id=\'' + change.doc.id + '\']');
+      const thisPost = containerPost.querySelector(`[data-id='${change.doc.id}']`);
       containerPost.removeChild(thisPost);
       showPosts(change.doc);
     }

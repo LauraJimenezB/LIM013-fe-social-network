@@ -1,4 +1,5 @@
 import { createPost, post } from '../controllers/home-controller.js';
+import { storage } from '../firebase/storage.js'
 
 const firestore = () => firebase.firestore();
 const db = firestore;
@@ -45,7 +46,7 @@ export const home = () => {
   const divElement = document.createElement('div');
   divElement.innerHTML = homeView;
   // Obteniendo el valor del textarea
-  let textValue = divElement.querySelector('#textValue');
+  const textValue = divElement.querySelector('#textValue');
   // Subiendo el valor a firestore
   const sendButton = divElement.querySelector('#send');
 
@@ -55,11 +56,24 @@ export const home = () => {
     db().collection('posts').doc(id).update(updatedText);
   };
 
+  // SUBIR IMAGENES
+  const imagePost = () => {
+    let file = {};
+    divElement.querySelector('#imageFile').addEventListener('onchange', (e) => {
+      file = e.target.files[0];
+      return file;
+    });
+    const user = firebase.auth().currentUser;
+    if (user) {
+      storage().ref(`users/${user.uid}/profile.jpg`).put(file);
+    }
+  };
   sendButton.addEventListener('click', () => {
+    imagePost();
     if (!editStatus) {
       post(textValue.value);
     } else {
-      updatePost (id, {
+      updatePost(id, {
         text: textValue.value,
       });
     }
@@ -67,12 +81,7 @@ export const home = () => {
     editStatus = false;
     sendButton.innerText = 'Send';
   });
-  // SUBIR IMAGENES
-  const uploadImage = () => {
-    const file = divElement.querySelector('#imageFile');
-    console.log(file);
-  };
-  divElement.querySelector('#imageFile').addEventListener('click', uploadImage())
+
   // PROFILE
   const user = firebase.auth().currentUser;
 
