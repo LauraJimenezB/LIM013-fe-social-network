@@ -16,6 +16,8 @@ export const home = () => {
         <li><a class="active" href="#">Home</a></li>
         <li><a href="#/signIn">Log In</a></li>
         <li><a href="#/signUp">Sign Up</a></li>
+        <li id='logOut'>Log Out</li>
+        <li id='myPosts'>My posts</li>
       </ul>
     </nav>
 </header>
@@ -33,6 +35,11 @@ export const home = () => {
     <div class="postButtons">
     <button>Add Image</button>
     <button id="send">Send</button>
+    <label for="status">Status:</label>
+    <select id="status" name="status">
+      <option value="privado">Privado</option>
+      <option value="publico">Público</option>
+    </select>
     </div>
   </section>
   <section class='postArea' id='publicPost'>
@@ -46,27 +53,37 @@ export const home = () => {
   const divElement = document.createElement('div');
   divElement.innerHTML = homeView;
   // Obteniendo el valor del textarea
-  let textValue = divElement.querySelector('#textValue');
+  const textValue = divElement.querySelector('#textValue');
+
+  const statusValue = divElement.querySelector('#status');
   // Subiendo el valor a firestore
   const sendButton = divElement.querySelector('#send');
 
   let editStatus = false;
   let id = '';
-  const updatePost = (id, updatedText) => {
+  const updatePost = (idPost, updatedText) => {
     db().collection('posts').doc(id).update(updatedText);
   };
 
   sendButton.addEventListener('click', () => {
     if (!editStatus) {
-      post(textValue.value);
+      post(textValue.value, statusValue.value);
     } else {
-      updatePost (id, {
+      updatePost(id, {
         text: textValue.value,
       });
     }
     textValue.value = '';
     editStatus = false;
     sendButton.innerText = 'Send';
+  });
+  // Log Out
+  const logOut = divElement.querySelector('#logOut');
+  logOut.addEventListener('click', (e) => {
+    e.preventDefault();
+    firebase.auth().signOut().then(() => {
+      console.log('user signed out');
+    });
   });
 
   // PROFILE
@@ -77,7 +94,7 @@ export const home = () => {
     const docRef = db().collection('users').doc(user.uid);
     docRef.get().then((doc) => {
       if (doc.exists) {
-        console.log('Document data:', doc.data());
+        // console.log('Document data:', doc.data());
         const username = divElement.querySelector('#username');
         username.innerHTML = doc.data().name;
       } else {
@@ -97,7 +114,7 @@ export const home = () => {
     const postTemplate = `
   
     <div class="postUserInformation">
-      <span id='123'>Username</span>
+      <span id='usernamePost'></span>
       <span>Fecha</span>
     </div>
     <div class="editDeletePrivacy">
@@ -124,12 +141,20 @@ export const home = () => {
     divPost.setAttribute('data-id', doc.id);
     postArea.appendChild(divPost);
 
+    const usernamePost = divPost.querySelector('#usernamePost');
+    const uidPost = doc.data().uid;
+    usernamePost.textContent = uidPost;
+    db().collection('users').doc(uidPost)
+      .onSnapshot((doc) => {
+        usernamePost.innerHTML = doc.data().name;
+      });
+
     // DELETE
     const deletePost = divPost.querySelector('#delete');
     deletePost.addEventListener('click', (e) => {
       e.stopPropagation();
-      const id = e.target.parentElement.parentElement.getAttribute('data-id');
-      db().collection('posts').doc(id).delete();
+      const idPost = e.target.parentElement.parentElement.getAttribute('data-id');
+      db().collection('posts').doc(idPost).delete();
     });
 
     // EDIT
@@ -142,6 +167,29 @@ export const home = () => {
       id = e.target.parentElement.parentElement.getAttribute('data-id');
       const getPost = doc.data();
       textValue.value = getPost.text;
+    });
+
+    const myPosts = divElement.querySelector('#myPosts');
+    myPosts.addEventListener('click', () => {
+      Array.from(divElement.querySelectorAll('.divPost'))
+        .forEach((postDiv) => {
+          postDiv.style.display = 'none';
+        });
+      // for (let x = 0; x < postDiv.length; x++) { postDiv[x].style.display = 'none'; }
+      // postDiv.style.display = 'none';
+      db().collection('posts').where('status', '==', 'privado')
+        .get()
+        .then((querySnapshot) => {
+          querySnapshot.forEach((doc) => {
+            console.log(doc);
+            // doc.data() is never undefined for query doc snapshots
+            showPosts(doc);
+            console.log(doc.id, ' => ', doc.data());
+          });
+        })
+        .catch((error) => {
+          console.log('Error getting documents: ', error);
+        });
     });
   }
 
