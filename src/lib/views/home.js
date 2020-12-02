@@ -1,4 +1,4 @@
-import { createPost, post } from '../controllers/home-controller.js';
+import { createPost, post, myownPosts } from '../controllers/home-controller.js';
 
 const firestore = () => firebase.firestore();
 const db = firestore;
@@ -14,19 +14,19 @@ export const home = () => {
       <label class="logo">Street Food</label>
       <ul>
         <li><a class="active" href="#">Home</a></li>
-        <li><a href="#/signIn">Log In</a></li>
-        <li><a href="#/signUp">Sign Up</a></li>
-        <li id='logOut'>Log Out</li>
+        <li id='logIn'><a href="#/signIn">Log In</a></li>
+        <li id='signUp'><a href="#/signUp">Sign Up</a></li>
         <li id='myPosts'>My posts</li>
+        <li id='logOut'>Log Out</li>
       </ul>
     </nav>
 </header>
 <div class="main">
   <aside class="homeProfile">
     <figure>
-      <img src="https://cdn.icon-icons.com/icons2/1674/PNG/512/person_110935.png" width="100px" height="100px">
+      <img src='../img/user.svg' width="100px" height="100px" class='imgUser'>
     </figure>
-    <figcaption>Username</figcaption>
+    <figcaption></figcaption>
     <span id="username"></span>
   </aside>
   <div class="posts">
@@ -78,11 +78,21 @@ export const home = () => {
     sendButton.innerText = 'Send';
   });
   // Log Out
+  const logIn = divElement.querySelector('#logIn');
+  const signUp = divElement.querySelector('#signUp');
+  const myPosts = divElement.querySelector('#myPosts');
+  const username = divElement.querySelector('#username');
+
   const logOut = divElement.querySelector('#logOut');
   logOut.addEventListener('click', (e) => {
     e.preventDefault();
     firebase.auth().signOut().then(() => {
       console.log('user signed out');
+      logIn.style.display = 'inline-block';
+      signUp.style.display = 'inline-block';
+      logOut.style.display = 'none';
+      myPosts.style.display = 'none';
+      username.innerHTML = 'User is not signed';
     });
   });
 
@@ -92,18 +102,22 @@ export const home = () => {
   if (user) {
     console.log('user is signed');
     const docRef = db().collection('users').doc(user.uid);
-    docRef.get().then((doc) => {
-      if (doc.exists) {
-        // console.log('Document data:', doc.data());
-        const username = divElement.querySelector('#username');
-        username.innerHTML = doc.data().name;
-      } else {
-        // doc.data() will be undefined in this case
-        console.log('No such document!');
-      }
-    }).catch((error) => {
-      console.log('Error getting document:', error);
-    });
+    db().collection('users').doc(user.uid)
+      .onSnapshot((doc) => {
+        if (doc.exists) {
+          // console.log('Document data:', doc.data());
+          username.innerHTML = `USERNAME: ${doc.data().name}`;
+        } else {
+          // doc.data() will be undefined in this case
+          console.log('No such document!');
+        }
+      });
+    logIn.style.display = 'none';
+    signUp.style.display = 'none';
+  } else {
+    logOut.style.display = 'none';
+    myPosts.style.display = 'none';
+    username.innerHTML = 'User is not signed';
   }
   // POSTS
   const postArea = divElement.querySelector('#publicPost');
@@ -168,32 +182,20 @@ export const home = () => {
       const getPost = doc.data();
       textValue.value = getPost.text;
     });
-
-    const myPosts = divElement.querySelector('#myPosts');
-    myPosts.addEventListener('click', () => {
-      Array.from(divElement.querySelectorAll('.divPost'))
-        .forEach((postDiv) => {
-          postDiv.style.display = 'none';
-        });
-      // for (let x = 0; x < postDiv.length; x++) { postDiv[x].style.display = 'none'; }
-      // postDiv.style.display = 'none';
-      db().collection('posts').where('status', '==', 'privado')
-        .get()
-        .then((querySnapshot) => {
-          querySnapshot.forEach((doc) => {
-            console.log(doc);
-            // doc.data() is never undefined for query doc snapshots
-            showPosts(doc);
-            console.log(doc.id, ' => ', doc.data());
-          });
-        })
-        .catch((error) => {
-          console.log('Error getting documents: ', error);
-        });
-    });
   }
+  const postsArea = divElement.querySelector('#publicPost');
+  createPost(showPosts, postsArea);
 
-  const postA = divElement.querySelector('#publicPost');
-  createPost(showPosts, postA);
+  myPosts.addEventListener('click', (e) => {
+    e.stopPropagation();
+    // const postDiv = divElement.querySelectorAll('.divPost');
+    Array.from(divElement.querySelectorAll('.divPost'))
+      .forEach((postDiv) => {
+        postDiv.style.display = 'none';
+      });
+
+    // for (let x = 0; x < postDiv.length; x++) { postDiv[x].style.display = 'none'; }
+    myownPosts(showPosts);
+  });
   return divElement;
 };

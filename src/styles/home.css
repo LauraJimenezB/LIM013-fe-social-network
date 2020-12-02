@@ -302,7 +302,9 @@
       margin-right: 0%;
       height: 100vh;
     }
-    
+    .imgUser{
+      border-radius: 50%;
+    }
   }
 @media(max-width: 420px){
   label.logo{
