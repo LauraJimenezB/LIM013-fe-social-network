@@ -72,10 +72,15 @@ export const home = () => {
   sendButton.addEventListener('click', () => {
     const user = firebase.auth().currentUser;
     if (user && !file) {
-      firebase.storage().ref(`users/${user.uid}/${file.name}`).put(file)
-        .then((res) => console.log(res, 'Succesfully uploaded'))
-        .catch((error) => console.log(error));
+      const uploadTask = () => {
+        firebase.storage().ref(`users/${user.uid}/${file.name}`).put(file)
+          .then((res) => console.log(res, 'Succesfully uploaded'))
+          .catch((error) => console.log(error));
+      };
+      uploadTask();
+      uploadTask.snapshot.ref.getDownloadURL().then((download) => console.log(download));
     }
+
     if (!editStatus) {
       post(textValue.value, statusValue.value);
     } else {
