@@ -1,5 +1,4 @@
 import { createPost, post } from '../controllers/home-controller.js';
-import { storage } from '../firebase/storage.js'
 
 const firestore = () => firebase.firestore();
 const db = firestore;
@@ -64,21 +63,19 @@ export const home = () => {
   const updatePost = (idPost, updatedText) => {
     db().collection('posts').doc(id).update(updatedText);
   };
-
-  // SUBIR IMAGENES
-  const imagePost = () => {
-    let file = {};
-    divElement.querySelector('#imageFile').addEventListener('onchange', (e) => {
-      file = e.target.files[0];
-      return file;
-    });
+  /*   SUBIR IMAGENES */
+  const imageButton = divElement.querySelector('#imageFile');
+  imageButton.addEventListener('change', (e) => {
+    const file = e.target.files[0];
+    console.log(file);
     const user = firebase.auth().currentUser;
     if (user) {
-      storage().ref(`users/${user.uid}/profile.jpg`).put(file);
+      firebase.storage().ref(`users/${user.uid}/post.jpg`).put(e.target.files[0])
+        .then((res) => console.log(res, 'Succesfully uploaded'))
+        .catch((error) => console.log(error));
     }
-  };
+  });
   sendButton.addEventListener('click', () => {
-    imagePost();
     if (!editStatus) {
       post(textValue.value, statusValue.value);
     } else {
