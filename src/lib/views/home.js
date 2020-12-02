@@ -108,10 +108,8 @@ export const home = () => {
 
   // PROFILE
   const user = firebase.auth().currentUser;
-
   if (user) {
     console.log('user is signed');
-    const docRef = db().collection('users').doc(user.uid);
     db().collection('users').doc(user.uid)
       .onSnapshot((doc) => {
         if (doc.exists) {
@@ -168,8 +166,8 @@ export const home = () => {
     const uidPost = doc.data().uid;
     usernamePost.textContent = uidPost;
     db().collection('users').doc(uidPost)
-      .onSnapshot((doc) => {
-        usernamePost.innerHTML = doc.data().name;
+      .onSnapshot((file) => {
+        usernamePost.innerHTML = file.data().name;
       });
 
     // DELETE
@@ -199,10 +197,9 @@ export const home = () => {
     e.stopPropagation();
     // const postDiv = divElement.querySelectorAll('.divPost');
     Array.from(divElement.querySelectorAll('.divPost'))
-      .forEach((postDiv) => {
-        postDiv.style.display = 'none';
+      .forEach((each) => {
+        each.style.display = 'none';
       });
-
     // for (let x = 0; x < postDiv.length; x++) { postDiv[x].style.display = 'none'; }
     myownPosts(showPosts);
   });
