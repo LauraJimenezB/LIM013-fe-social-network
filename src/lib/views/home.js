@@ -65,17 +65,17 @@ export const home = () => {
   };
   /*   SUBIR IMAGENES */
   const imageButton = divElement.querySelector('#imageFile');
+  let file;
   imageButton.addEventListener('change', (e) => {
-    const file = e.target.files[0];
-    console.log(file);
+    file = e.target.files[0];
+  });
+  sendButton.addEventListener('click', () => {
     const user = firebase.auth().currentUser;
-    if (user) {
-      firebase.storage().ref(`users/${user.uid}/post.jpg`).put(e.target.files[0])
+    if (user && !file) {
+      firebase.storage().ref(`users/${user.uid}/${file.name}`).put(file)
         .then((res) => console.log(res, 'Succesfully uploaded'))
         .catch((error) => console.log(error));
     }
-  });
-  sendButton.addEventListener('click', () => {
     if (!editStatus) {
       post(textValue.value, statusValue.value);
     } else {
