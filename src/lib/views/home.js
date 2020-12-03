@@ -71,22 +71,21 @@ export const home = () => {
   });
   sendButton.addEventListener('click', () => {
     const user = firebase.auth().currentUser;
-    if (user && !file) {
+    if (user && file) {
       firebase.storage().ref(`users/${user.uid}/${file.name}`).put(file)
         .then((res) => console.log(res, 'Succesfully uploaded'))
         .catch((error) => console.log(error));
-      firebase.storage().ref(file.name).getDownloadURL()
+      firebase.storage().ref(`users/${user.uid}/${file.name}`).getDownloadURL()
         .then((url) => {
           console.log(url);
+          if (!editStatus) {
+            post(textValue.value, statusValue.value, url);
+          } else {
+            updatePost(id, {
+              text: textValue.value,
+            });
+          }
         });
-    }
-
-    if (!editStatus) {
-      post(textValue.value, statusValue.value);
-    } else {
-      updatePost(id, {
-        text: textValue.value,
-      });
     }
     textValue.value = '';
     editStatus = false;

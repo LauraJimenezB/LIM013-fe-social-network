@@ -4,8 +4,7 @@ const firestore = () => firebase.firestore();
 const db = firestore;
 // eslint-disable-next-line import/no-cycle
 
-export const post = (text, status) => {
-  const photo = 'photo';
+export const post = (text, status, photo) => {
   savePosts(text, photo, status);
 };
 /*
