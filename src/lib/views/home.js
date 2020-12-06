@@ -53,7 +53,7 @@ export const home = () => {
   divElement.innerHTML = homeView;
   // Obteniendo el valor del textarea
   const textValue = divElement.querySelector('#textValue');
-
+  // Obteniendo el valor de privacidad
   const statusValue = divElement.querySelector('#status');
   // Subiendo el valor a firestore
   const sendButton = divElement.querySelector('#send');
@@ -158,7 +158,6 @@ export const home = () => {
     <div class="editDeletePrivacy">
       <button id='edit'>Editar</button>
       <button id='delete'>Eliminar</button>
-      <button>Privado/pública</button>
     </div>
     <div id='editArea' style='display: none'>
       <textarea id="textEdit" class="textArea" placeholder="Escribe aquí tus opiniones"></textarea>
@@ -214,6 +213,7 @@ export const home = () => {
       id = e.target.parentElement.parentElement.getAttribute('data-id');
       const getPost = doc.data();
       textValue.value = getPost.text;
+      statusValue.value = getPost.status;
     });
   }
   const postsArea = divElement.querySelector('#publicPost');
