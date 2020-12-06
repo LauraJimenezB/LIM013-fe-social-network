@@ -1,22 +1,27 @@
 # Creando una red social: "Street Food"
-![](src/img/header.jpg)
-
-## Introducción
-Street Food es una red social enfocada a reunir y compartir experiencias acerca de puntos de comida callejera o puestos no muy conocidos, de modo que otras personas los conozcan y así disfrutar de buena comida.
+![](src/img/header2.jpg)
 
 ## Producto final
-![](src/img/interfaz.png)
+Puedes observar la interfaz del producto final aquí
+
+Street Food es una red social enfocada a reunir y compartir experiencias acerca de puntos de comida callejera o puestos no muy conocidos, de modo que otras personas los conozcan y así disfrutar de buena comida.
 
 ## Diseño de la interfaz de usuario
 
 ### PROTOTIPO DE ALTA FIDELIDAD
 ![](src/img/prototipo.png)
-![](src/img/prot.png)
+
+### PRIMERA INTERFAZ
+![](src/img/view.png)
+![](src/img/view2.png)
+![](src/img/view3.png)
 
 ### Feedback 
 * Aumentar un texto estático indicando para que es la página.(Aquí encontrarás...) en la página principal.
 * Las secciones dentro de la barra de navegación (desktop) tengan un mismo patrón de solo mayúsculas o minúsculas.
 * Disminuir un poco la intensidad del color negro de la interfaz.
+* Evitar espacios a los lados de la imagen en "SIGN UP"
+
 
 ## Implementación de la interfaz de usuario
 
