@@ -72,20 +72,32 @@ export const home = () => {
   sendButton.addEventListener('click', () => {
     const user = firebase.auth().currentUser;
     if (user && file) {
-      firebase.storage().ref(`users/${user.uid}/${file.name}`).put(file)
-        .then((res) => console.log(res, 'Succesfully uploaded'))
-        .catch((error) => console.log(error));
-      firebase.storage().ref(`users/${user.uid}/${file.name}`).getDownloadURL()
-        .then((url) => {
-          console.log(url);
+      const fileRef = firebase.storage().ref(`users/${user.uid}/${file.name}`);
+      const uploadTask = fileRef.put(file);
+      const text = textValue.value;
+      uploadTask.then((snap) => {
+        console.log(textValue.value);
+        console.log('Succesfully uploaded');
+        return fileRef.getDownloadURL().then((url) => {
+          console.log('URL', url);
+          console.log(text);
           if (!editStatus) {
-            post(textValue.value, statusValue.value, url);
+            post(text, statusValue.value, url);
           } else {
             updatePost(id, {
               text: textValue.value,
             });
           }
         });
+      });
+    } else if (user && file === undefined) {
+      if (!editStatus) {
+        post(textValue.value, statusValue.value, 'photo');
+      } else {
+        updatePost(id, {
+          text: textValue.value,
+        });
+      }
     }
     textValue.value = '';
     editStatus = false;
@@ -155,6 +167,9 @@ export const home = () => {
     </div>
     </div>
     <div id="contentPost" class="contentPost"></div>
+    <div id='images'>
+    <img id='img' height='150px' width='150px'>
+    </div>
     <button id="likeButton"><span id="like" class="iconify" data-icon="ant-design:like-twotone" data-inline="false"></span> Like</button>
     <div id="comment">
     </div>
@@ -162,9 +177,16 @@ export const home = () => {
 `;
     divPost.innerHTML = postTemplate;
     const content = divPost.querySelector('#contentPost');
+    const selectedImg = divPost.querySelector('#img');
     content.textContent = doc.data().text;
     divPost.setAttribute('data-id', doc.id);
     postArea.appendChild(divPost);
+
+    if (doc.data().photo === 'photo') {
+      selectedImg.style.display = 'none';
+    } else {
+      selectedImg.src = doc.data().photo;
+    }
 
     const usernamePost = divPost.querySelector('#usernamePost');
     const uidPost = doc.data().uid;
@@ -205,7 +227,7 @@ export const home = () => {
         each.style.display = 'none';
       });
     // for (let x = 0; x < postDiv.length; x++) { postDiv[x].style.display = 'none'; }
-    myownPosts(showPosts);
+    myownPosts(showPosts, postArea, user.uid);
   });
   return divElement;
 };

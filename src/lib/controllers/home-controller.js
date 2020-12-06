@@ -5,17 +5,10 @@ const db = firestore;
 // eslint-disable-next-line import/no-cycle
 
 export const post = (text, status, photo) => {
+  // const photo = 'photo';
   savePosts(text, photo, status);
 };
-/*
-db.collection('posts').where('status', '==', 'publico')
-  .onSnapshot((querySnapshot) => {
-    const posts = [];
-    querySnapshot.forEach((doc) => {
-      posts.push(doc.data().name);
-    });
-  });
-*/
+
 export const createPost = (showPosts, containerPost) => db().collection('posts').where('status', '==', 'publico').onSnapshot((snapshot) => {
   const changes = snapshot.docChanges();
   changes.forEach((change) => {
@@ -37,7 +30,7 @@ export const createPost = (showPosts, containerPost) => db().collection('posts')
   });
 });
 
-export const myownPosts = (showPosts, containerPost) => db().collection('posts').where('status', '==', 'privado').onSnapshot((snapshot) => {
+export const myownPosts = (showPosts, containerPost, user) => db().collection('posts').where('uid', '==', user).onSnapshot((snapshot) => {
   const changes = snapshot.docChanges();
   changes.forEach((change) => {
     if (change.type === 'added') {
