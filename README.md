@@ -1,5 +1,5 @@
 # Creando una red social: "Street Food"
-![](src/img/header.png)
+![](src/img/header.jpg)
 
 ## Introducción
 Street Food es una red social enfocada a reunir y compartir experiencias acerca de puntos de comida callejera o puestos no muy conocidos, de modo que otras personas los conozcan y así disfrutar de buena comida.
