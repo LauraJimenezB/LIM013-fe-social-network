@@ -60,3 +60,8 @@ export const getMyPosts = (showPosts) => db().collection('posts').where('status'
       showPosts(doc);
     });
   });
+export const deletePosts = (e) => {
+  e.stopPropagation();
+  const idPost = e.target.parentElement.parentElement.getAttribute('data-id');
+  db().collection('posts').doc(idPost).delete();
+};

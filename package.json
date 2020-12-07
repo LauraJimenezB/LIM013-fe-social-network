@@ -37,6 +37,7 @@
   },
   "dependencies": {
     "@jest/globals": "^26.6.2",
-    "firebase": "^8.0.1"
+    "firebase": "^8.0.1",
+    "npx": "^10.2.2"
   }
 }

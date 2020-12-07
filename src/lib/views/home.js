@@ -1,4 +1,4 @@
-import { createPost, post, myownPosts } from '../controllers/home-controller.js';
+import { createPost, post, myownPosts, deletePosts } from '../controllers/home-controller.js';
 
 const firestore = () => firebase.firestore();
 const db = firestore;
@@ -14,10 +14,10 @@ export const home = () => {
       <label class="logo">Street Food</label>
       <ul>
         <li><a class="active" href="#">Home</a></li>
-        <li id='logIn'><a href="#/signIn">Log In</a></li>
-        <li id='signUp'><a href="#/signUp">Sign Up</a></li>
-        <li id='myPosts'>My posts</li>
-        <li id='logOut'>Log Out</li>
+        <li id='logIn'><a href="#/signIn">INICIAR SESIÓN</a></li>
+        <li id='signUp'><a href="#/signUp">REGISTRARSE</a></li>
+        <li id='myPosts'>MIS POSTS</li>
+        <li id='logOut'>SALIR</li>
       </ul>
     </nav>
 </header>
@@ -75,7 +75,7 @@ export const home = () => {
       const fileRef = firebase.storage().ref(`users/${user.uid}/${file.name}`);
       const uploadTask = fileRef.put(file);
       const text = textValue.value;
-      uploadTask.then((snap) => {
+      uploadTask.then(() => {
         console.log(textValue.value);
         console.log('Succesfully uploaded');
         return fileRef.getDownloadURL().then((url) => {
@@ -155,10 +155,6 @@ export const home = () => {
       <span id='usernamePost'></span>
       <span>Fecha</span>
     </div>
-    <div class="editDeletePrivacy">
-      <button id='edit'>Editar</button>
-      <button id='delete'>Eliminar</button>
-    </div>
     <div id='editArea' style='display: none'>
       <textarea id="textEdit" class="textArea" placeholder="Escribe aquí tus opiniones"></textarea>
       <div class="buttonsEdit">
@@ -169,6 +165,10 @@ export const home = () => {
     <div id='images'>
     <img id='img' height='150px' width='150px'>
     </div>
+    <div class="editDeletePrivacy">
+    <button id='edit'>Editar</button>
+    <button id='delete'>Eliminar</button>
+  </div>
     <button id="likeButton"><span id="like" class="iconify" data-icon="ant-design:like-twotone" data-inline="false"></span> Like</button>
     <div id="comment">
     </div>
@@ -198,9 +198,7 @@ export const home = () => {
     // DELETE
     const deletePost = divPost.querySelector('#delete');
     deletePost.addEventListener('click', (e) => {
-      e.stopPropagation();
-      const idPost = e.target.parentElement.parentElement.getAttribute('data-id');
-      db().collection('posts').doc(idPost).delete();
+      deletePosts(e);
     });
 
     // EDIT
@@ -224,6 +222,7 @@ export const home = () => {
     // const postDiv = divElement.querySelectorAll('.divPost');
     Array.from(divElement.querySelectorAll('.divPost'))
       .forEach((each) => {
+        // eslint-disable-next-line no-param-reassign
         each.style.display = 'none';
       });
     // for (let x = 0; x < postDiv.length; x++) { postDiv[x].style.display = 'none'; }

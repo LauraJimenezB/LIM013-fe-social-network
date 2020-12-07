@@ -1,39 +1,6 @@
-/* eslint-disable import/first */
-/* eslint-disable import/order */
-/* // importamos el mock-cloud-firestore
-import { it } from '@jest/globals';
-import MockFirebase from 'mock-cloud-firestore';
-const fixtureData = {
-    __collection__: {
-      users: {
-        __doc__: {
-          abc1d: {
-            name: 'Pepita',
-            email: 'pepita@gmail.com',
-            userUid: abc1d,
-            photo: 'no photo'
-          }
-        }
-      }
-    }
-}
-
-global.firebase = new MockFirebase(fixtureData);
-// importamos la funcion que vamos a testear
-import { createUserDB } from '../src/lib/firebase/firestore.js';
-describe('createUser', () => {
-  it('debería ser una función', () => {
-    expect(typeof createUserDB).toBe('function');
-  });
-  it('debería subir la información', () => {
-    const email = 'pepita@gmail.com';
-    const userUid= 'abc1d';
-    const name = "Pepita";
-    const photo= "no photo"
-    return createUser(email, name, userUid, photo).then
-  })
-});
- */
+import { describe, it } from '@jest/globals';
+import { signUpUser, signInUser, signInGoogle } from '../src/lib/firebase/auth.js';
+import { savePosts } from '../src/lib/firebase/firestore.js';
 // Importamos la función de registro
 const firebasemock = require('firebase-mock');
 
@@ -49,8 +16,6 @@ global.firebase = firebasemock.MockFirebaseSdk(
   () => mockfirestore,
 );
 
-import { signUpUser, signInUser, signInGoogle } from '../src/lib/firebase/auth.js';
-
 describe('se crea un usuario', () => {
   it('Debería poder registrarse un usuario', () => signUpUser('pepita@gmail.com', 'abc1d')
     .then((res) => {
@@ -64,4 +29,37 @@ describe('se crea un usuario', () => {
     .then((res) => {
       expect(res.isAnonymous).toBe(false);
     }));
+  it('Debería poder salir de la cuenta', () => signInGoogle()
+    .then((res) => {
+      expect(res.isAnonymous).toBe(false);
+    }));
+});
+
+// Crear post, cambiar post, eliminar post
+
+describe('Se crea un post', () => {
+  it('debería poder crear un post', (done) => {
+    const data = {
+      text: 'hola',
+      status: 'privado',
+    };
+    // en firestore  no existe un post con el comentario `comentario`
+    firebase.firestore().collection('posts').get()
+      .then((result) => {
+        console.log(result.data);
+        expect(Object.values(result.data).filter((p) => p.status === data.status)).toHaveLength(0);
+        return savePosts(data);
+      })
+      .then(() => firebase.firestore().collection('posts').get())
+      .then((result2) => {
+        expect(Object.values(result2.data).filter((p) => p.status === data.status)).toHaveLength(1);
+        done();
+      });
+  });
+  it('debería poder editar un post', () => {
+
+  });
+  it('debería poder eliminar un post', () => {
+
+  });
 });

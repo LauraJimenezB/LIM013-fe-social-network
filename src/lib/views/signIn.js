@@ -12,8 +12,8 @@ export const signIn = () => {
   </header>
   <section class="signInForm">
     <form>
-      <h2 class="h2In">SIGN IN</h2>
-      <p>¡Bienvenid@ de nuevo!</p>
+      <h2 class="h2In">INICIA SESIÓN</h2>
+      <p id="pSignIn">Te interesa la comida callejera?<br>Quieres compartir tu opinión y conocer la de otros?<br>Este es el lugar para tí!</p>
       <div> 
       <input class="formInput" id="emailSignIn" type="email" placeholder="Correo">
       </div> 
@@ -23,7 +23,7 @@ export const signIn = () => {
     </form>
     <button id="signIn" class="signInButton">Sign In</button>
     <div class='google'>
-      <button id="googleButton"><img src='../img/buscar.svg' width='40px' height='40px'></button>
+      <button id="googleButton"><img src='../img/google-icon.svg' width='40px' height='40px'></button>
     </div>
     <div class="footer">
       <p>No tienes una cuenta creada?<a href="#/signUp">Sign up</a></p>
