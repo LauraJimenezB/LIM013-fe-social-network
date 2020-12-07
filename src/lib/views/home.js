@@ -59,8 +59,8 @@ export const home = () => {
 
   let editStatus = false;
   let id = '';
-  const updatePost = (idPost, updatedText, updatedStatus) => {
-    db().collection('posts').doc(id).update(updatedText, updatedStatus);
+  const updatePost = (idPost, updatedText) => {
+    db().collection('posts').doc(id).update(updatedText);
   };
   /*   SUBIR IMAGENES */
   const imageButton = divElement.querySelector('#imageFile');
@@ -179,7 +179,7 @@ export const home = () => {
     <div class="postUserInformation">
       <img id='userPhoto' height='50px' width='50px'>
       <span id='usernamePost'></span>
-      <span>STATUS</span>
+      <span id='statusPost'></span>
     </div>
     <div id='editArea' style='display: none'>
       <textarea id="textEdit" class="textArea" placeholder="Escribe aquí tus opiniones"></textarea>
@@ -215,11 +215,14 @@ export const home = () => {
 
     const usernamePost = divPost.querySelector('#usernamePost');
     const userphotoPost = divPost.querySelector('#userPhoto');
+    const statusPost = divPost.querySelector('#statusPost');
+    statusPost.innerHTML = doc.data().status;
     const uidPost = doc.data().uid;
     usernamePost.textContent = uidPost;
     db().collection('users').doc(uidPost)
       .onSnapshot((file) => {
         usernamePost.innerHTML = file.data().name;
+        console.log(file.data());
         userphotoPost.src = file.data().photo;
         if (file.data().photo === 'no photo') {
           userphotoPost.src = '../img/userPhoto.svg';
