@@ -23,11 +23,10 @@ export const home = () => {
 </header>
 <div class="main">
   <aside class="homeProfile">
-    <figure>
-      <img src='../img/user.svg' width="100px" height="100px" class='imgUser'>
-    </figure>
+    <img width="100px" height="100px" id='myPhoto'>
     <figcaption></figcaption>
     <span id="username"></span>
+    <button id="editPhoto">Edit photo</button>
   </aside>
   <div class="posts">
   <section class="homeEditor">
@@ -60,8 +59,8 @@ export const home = () => {
 
   let editStatus = false;
   let id = '';
-  const updatePost = (idPost, updatedText) => {
-    db().collection('posts').doc(id).update(updatedText);
+  const updatePost = (idPost, updatedText, updatedStatus) => {
+    db().collection('posts').doc(id).update(updatedText, updatedStatus);
   };
   /*   SUBIR IMAGENES */
   const imageButton = divElement.querySelector('#imageFile');
@@ -108,6 +107,7 @@ export const home = () => {
   const signUp = divElement.querySelector('#signUp');
   const myPosts = divElement.querySelector('#myPosts');
   const username = divElement.querySelector('#username');
+  const myPhoto = divElement.querySelector('#myPhoto');
 
   const logOut = divElement.querySelector('#logOut');
   logOut.addEventListener('click', (e) => {
@@ -119,6 +119,7 @@ export const home = () => {
       logOut.style.display = 'none';
       myPosts.style.display = 'none';
       username.innerHTML = 'User is not signed';
+      myPhoto.src = '../img/userPhoto.svg';
     });
   });
 
@@ -131,6 +132,10 @@ export const home = () => {
         if (doc.exists) {
           // console.log('Document data:', doc.data());
           username.innerHTML = `USERNAME: ${doc.data().name}`;
+          myPhoto.src = doc.data().photo;
+          if (file.data().photo === 'no photo') {
+            myPhoto.src = '../img/userPhoto.svg';
+          }
         } else {
           // doc.data() will be undefined in this case
           console.log('No such document!');
@@ -138,11 +143,29 @@ export const home = () => {
       });
     logIn.style.display = 'none';
     signUp.style.display = 'none';
+    // Edit profile picture
+    divElement.querySelector('#editPhoto').onclick = () => {
+      const input = document.createElement('input');
+      input.type = 'file';
+      input.onchange = (e) => {
+        const files = e.target.files;
+        const reader = new FileReader();
+        reader.onload = () => {
+          db().collection('users').doc(user.uid).update({
+            photo: reader.result,
+          });
+        };
+        reader.readAsDataURL(files[0]);
+      };
+      input.click();
+    };
   } else {
     logOut.style.display = 'none';
     myPosts.style.display = 'none';
     username.innerHTML = 'User is not signed';
+    myPhoto.src = '../img/userPhoto.svg';
   }
+
   // POSTS
   const postArea = divElement.querySelector('#publicPost');
   function showPosts(doc) {
@@ -152,6 +175,7 @@ export const home = () => {
     const postTemplate = `
   
     <div class="postUserInformation">
+      <img id='userPhoto' height='50px' width='50px'>
       <span id='usernamePost'></span>
       <span>Fecha</span>
     </div>
@@ -189,11 +213,16 @@ export const home = () => {
     }
 
     const usernamePost = divPost.querySelector('#usernamePost');
+    const userphotoPost = divPost.querySelector('#userPhoto');
     const uidPost = doc.data().uid;
     usernamePost.textContent = uidPost;
     db().collection('users').doc(uidPost)
       .onSnapshot((file) => {
         usernamePost.innerHTML = file.data().name;
+        userphotoPost.src = file.data().photo;
+        if (file.data().photo === 'no photo') {
+          userphotoPost.src = '../img/userPhoto.svg';
+        }
       });
 
     // DELETE
@@ -214,6 +243,7 @@ export const home = () => {
       id = e.target.parentElement.parentElement.getAttribute('data-id');
       const getPost = doc.data();
       textValue.value = getPost.text;
+      statusValue.value = getPost.status;
     });
   }
   const postsArea = divElement.querySelector('#publicPost');
