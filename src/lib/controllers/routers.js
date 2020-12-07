@@ -1,3 +1,4 @@
+/* eslint-disable no-restricted-globals */
 import { components } from '../views/components.js';
 
 export const changeView = (route) => {
