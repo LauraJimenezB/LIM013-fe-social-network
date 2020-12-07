@@ -26,7 +26,7 @@ export const home = () => {
     <img width="100px" height="100px" id='myPhoto'>
     <figcaption></figcaption>
     <span id="username"></span>
-    <button id="editPhoto">Edit photo</button>
+    <button id="editPhoto">Editar foto</button>
   </aside>
   <div class="posts">
   <section class="homeEditor">
