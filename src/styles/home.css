@@ -7,12 +7,10 @@
   
   .homeHeader{
     color: #FFFFFF;
+    font-family: "Nova Round", monospace;
   }
   .homeHeader a {
     text-decoration: none;
-  }
-  .homeHeader {
-    font-family: "Nova Round";
   }
 
   nav{
@@ -44,7 +42,7 @@
       line-height: 30px;
   
     }
-    nav ul li a{
+    .homeHeader nav ul li a {
       font-size: 20px;
       color: white;
     padding: 7px 13px;
@@ -52,7 +50,7 @@
     text-transform: uppercase;
     }
 
-    a:hover{
+    .homeHeader a:hover{
       background: none;
       color: #464e53;
     }
@@ -148,7 +146,7 @@
   margin: 2vw 5vw;
 }
 .postUserInformation {
-  font-family: "Livvic";
+  font-family: "Livvic", monospace ;
   padding: 10px 20px;
   background-color: black;
   color: white;
@@ -169,7 +167,7 @@
 .editDeletePrivacy button {
   background-color: white;
   color: black;
-  font-family: 'Livvic', open-sans;
+  font-family: 'Livvic', monospace;
   border-color: rgb(71, 68, 68);
   border-radius: 5px;
   font-size: 15px;
@@ -178,12 +176,12 @@
 }
 .contentPost {
   margin: 10px;
-  font-family: 'Open Sans';
+  font-family: 'Open Sans', monospace;
 }
 .homeEditor label{
-  font-family: 'Nova Round', open-sans;
+  font-family: 'Nova Round', monospace;
 }
-nav ul{
+#check:checked nav ul{
   display: flex;
   flex-direction: row;
 }
@@ -195,7 +193,7 @@ input[type='file']#imageFile{
   height: 20px;
 }
 #username{
-  font-family: 'Livvic', open-sans;
+  font-family: 'Livvic', monospace;
 }
 #likeButton{
   border: outset black;
@@ -286,7 +284,6 @@ input[type='file']#imageFile{
       padding-bottom: 0%;
     }
     .divPost {
-      padding: none;
       width: 90%;
       padding: 0.5vw;
       border: 5px solid black;

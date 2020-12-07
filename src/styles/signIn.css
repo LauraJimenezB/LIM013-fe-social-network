@@ -92,7 +92,7 @@ a{
     padding: 5%;
     border: none;
 }
-.google:hover img, button {
+.google:hover button {
     background-color: #dc1515b9;
     cursor:pointer;
 

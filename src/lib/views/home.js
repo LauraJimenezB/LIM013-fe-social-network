@@ -1,4 +1,6 @@
-import { createPost, post, myownPosts, deletePosts } from '../controllers/home-controller.js';
+import {
+  createPost, post, myownPosts, deletePosts,
+} from '../controllers/home-controller.js';
 
 const firestore = () => firebase.firestore();
 const db = firestore;
@@ -220,11 +222,11 @@ export const home = () => {
     const uidPost = doc.data().uid;
     usernamePost.textContent = uidPost;
     db().collection('users').doc(uidPost)
-      .onSnapshot((file) => {
-        usernamePost.innerHTML = file.data().name;
-        console.log(file.data());
-        userphotoPost.src = file.data().photo;
-        if (file.data().photo === 'no photo') {
+      .onSnapshot((f) => {
+        usernamePost.innerHTML = f.data().name;
+        console.log(f.data());
+        userphotoPost.src = f.data().photo;
+        if (f.data().photo === 'no photo') {
           userphotoPost.src = '../img/userPhoto.svg';
         }
       });
