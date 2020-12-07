@@ -6,7 +6,6 @@ export const signUp = () => {
   const signUpView = `
   <div class="signUpContainer">
     <div id=signUpOrder>
-      <span class="iconify" data-icon="emojione-monotone:pot-of-food" data-inline="false"></span>
       <div id='signUpForm'>
         <header class="signUpHeader">
           <h2 class="h2Up">REGISTRO</h2>
@@ -20,11 +19,10 @@ export const signUp = () => {
             </form>
             <button id="mySubmit" class="signUpButton">Registrarse</button>
             <div class="signUpFooter">
-              <p>Ya tienes una cuenta creada?<a href="#/signIn">Sign In</a></p>
+              <p>Ya tienes una cuenta creada?<a href="#/signIn">Inicia sesión</a></p>
             </div>
           </section>
         </div>
-      <span class="iconify" data-icon="emojione-monotone:pot-of-food" data-inline="false"></span>
     </div>
 </div>
 `;

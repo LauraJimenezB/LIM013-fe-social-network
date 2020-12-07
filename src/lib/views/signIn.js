@@ -21,12 +21,12 @@ export const signIn = () => {
       <input class="formInput" id="passwordSignIn" type="password" placeholder="Contraseña">
       </div> 
     </form>
-    <button id="signIn" class="signInButton">Sign In</button>
+    <button id="signIn" class="signInButton">Aceptar</button>
     <div class='google'>
       <button id="googleButton"><img src='../img/google-icon.svg' width='40px' height='40px'></button>
     </div>
     <div class="footer">
-      <p>No tienes una cuenta creada?<a href="#/signUp">Sign up</a></p>
+      <p>No tienes una cuenta creada?<a href="#/signUp">Registrarse</a></p>
     </div>
   </section>
 </div>

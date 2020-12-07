@@ -86,6 +86,7 @@ export const home = () => {
           } else {
             updatePost(id, {
               text: textValue.value,
+              status: statusValue.value,
             });
           }
         });
@@ -96,6 +97,7 @@ export const home = () => {
       } else {
         updatePost(id, {
           text: textValue.value,
+          status: statusValue.value,
         });
       }
     }

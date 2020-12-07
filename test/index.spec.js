@@ -43,7 +43,7 @@ describe('Se crea un post', () => {
       text: 'hola',
       status: 'privado',
     };
-    // en firestore  no existe un post con el comentario `comentario`
+    // en firestore  no existe un post con el texto hola
     firebase.firestore().collection('posts').get()
       .then((result) => {
         console.log(result.data);
