@@ -155,7 +155,7 @@ export const home = () => {
   
     <div class="postUserInformation">
       <span id='usernamePost'></span>
-      <span>Fecha</span>
+      <span>STATUS</span>
     </div>
     <div id='editArea' style='display: none'>
       <textarea id="textEdit" class="textArea" placeholder="Escribe aquí tus opiniones"></textarea>
