@@ -15,7 +15,10 @@ export const signIn = () => {
       <h2 class="h2In">INICIA SESIÓN</h2>
       <p id="pSignIn">Te interesa la comida callejera?<br>Quieres compartir tu opinión y conocer la de otros?<br>Este es el lugar para tí!</p>
       <div> 
-      <input class="formInput" id="emailSignIn" type="email" placeholder="Correo">
+        <input class="formInput" id="emailSignIn" type="email" placeholder="Correo">
+        <div class="tooltip">
+        <span class="tooltiptext">Tooltip text</span>
+        </div>
       </div> 
       <div> 
       <input class="formInput" id="passwordSignIn" type="password" placeholder="Contraseña">
