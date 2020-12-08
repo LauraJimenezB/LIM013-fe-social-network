@@ -18,19 +18,16 @@ global.firebase = firebasemock.MockFirebaseSdk(
 );
 
 describe('se crea un usuario', () => {
-  it('Debería poder registrarse un usuario', () => signUpUser('pepita@gmail.com', 'abc1d')
+  it('Debería poder registrarse un usuario', (done) => signUpUser('pepita@gmail.com', 'abc1d')
     .then((res) => {
       expect(res.email).toBe('pepita@gmail.com');
+      done();
     }));
   it('Debería poder ingresar un usuario', () => signInUser('pepita@gmail.com', 'abc1d')
     .then((res) => {
       expect(res.email).toBe('pepita@gmail.com');
     }));
   it('Debería poder ingresar con google', () => signInGoogle()
-    .then((res) => {
-      expect(res.isAnonymous).toBe(false);
-    }));
-  it('Debería poder salir de la cuenta', () => signInGoogle()
     .then((res) => {
       expect(res.isAnonymous).toBe(false);
     }));
@@ -53,8 +50,11 @@ describe('Se crea un post', () => {
         return savePosts(data);
       });
   });
-  it('debería poder editar un post', () => {
-    updatePost('123');
+  it('debería poder editar un post', (done) => {
+    const id = '123';
+    const text = 'hello';
+    updatePost(id, text);
+    done();
   });
   it('debería poder eliminar un post', () => {
     deletePosts('123');
