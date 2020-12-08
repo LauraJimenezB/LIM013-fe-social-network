@@ -1,5 +1,6 @@
-import { describe, it } from '@jest/globals';
+// import { describe, it } from '@jest/globals';
 import { signUpUser, signInUser, signInGoogle } from '../src/lib/firebase/auth.js';
+import { deletePosts, updatePost } from '../src/lib/controllers/home-controller.js';
 import { savePosts } from '../src/lib/firebase/firestore.js';
 // Importamos la función de registro
 const firebasemock = require('firebase-mock');
@@ -38,8 +39,9 @@ describe('se crea un usuario', () => {
 // Crear post, cambiar post, eliminar post
 
 describe('Se crea un post', () => {
-  it('debería poder crear un post', (done) => {
+  it('debería poder crear un post', () => {
     const data = {
+      id: '123',
       text: 'hola',
       status: 'privado',
     };
@@ -49,17 +51,12 @@ describe('Se crea un post', () => {
         console.log(result.data);
         expect(Object.values(result.data).filter((p) => p.status === data.status)).toHaveLength(0);
         return savePosts(data);
-      })
-      .then(() => firebase.firestore().collection('posts').get())
-      .then((result2) => {
-        expect(Object.values(result2.data).filter((p) => p.status === data.status)).toHaveLength(1);
-        done();
       });
   });
   it('debería poder editar un post', () => {
-
+    updatePost('123');
   });
   it('debería poder eliminar un post', () => {
-
+    deletePosts('123');
   });
 });
