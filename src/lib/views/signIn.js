@@ -17,7 +17,7 @@ export const signIn = () => {
       <div> 
         <input class="formInput" id="emailSignIn" type="email" placeholder="Correo">
         <div class="tooltip">
-        <span class="tooltiptext">Tooltip text</span>
+          <span class="tooltiptext">Tooltip text</span>
         </div>
       </div> 
       <div> 
