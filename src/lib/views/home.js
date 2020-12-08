@@ -1,5 +1,5 @@
 import {
-  createPost, post, myownPosts, deletePosts,
+  createPost, post, myownPosts, deletePosts, updatePost,
 } from '../controllers/home-controller.js';
 
 const firestore = () => firebase.firestore();
@@ -61,9 +61,6 @@ export const home = () => {
 
   let editStatus = false;
   let id = '';
-  const updatePost = (idPost, updatedText) => {
-    db().collection('posts').doc(id).update(updatedText);
-  };
   /*   SUBIR IMAGENES */
   const imageButton = divElement.querySelector('#imageFile');
   let file;
@@ -224,7 +221,6 @@ export const home = () => {
     db().collection('users').doc(uidPost)
       .onSnapshot((f) => {
         usernamePost.innerHTML = f.data().name;
-        console.log(f.data());
         userphotoPost.src = f.data().photo;
         if (f.data().photo === 'no photo') {
           userphotoPost.src = '../img/userPhoto.svg';
@@ -234,7 +230,9 @@ export const home = () => {
     // DELETE
     const deletePost = divPost.querySelector('#delete');
     deletePost.addEventListener('click', (e) => {
-      deletePosts(e);
+      e.stopPropagation();
+      const idPost = e.target.parentElement.parentElement.getAttribute('data-id');
+      deletePosts(idPost);
     });
 
     // EDIT
