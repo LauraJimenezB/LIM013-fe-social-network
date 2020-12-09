@@ -1,3 +1,4 @@
+/* eslint-disable no-restricted-globals */
 import { components } from '../views/components.js';
 
 export const changeView = (route) => {
@@ -7,13 +8,29 @@ export const changeView = (route) => {
   switch (route) {
     case '':
     case '#/':
-    { return container.appendChild(components.homeTemplate()); }
+    { const state = { page_id: 1 };
+      const title = 'home';
+      const url = '';
+      history.pushState(state, title, url);
+      return container.appendChild(components.homeTemplate()); }
     case '#/signIn':
-    { return container.appendChild(components.signInTemplate()); }
+    { const state = { page_id: 2 };
+      const title = 'signIn';
+      const url = '';
+      history.pushState(state, title, url);
+      return container.appendChild(components.signInTemplate()); }
     case '#/signUp':
-    { return container.appendChild(components.signUpTemplate()); }
+    { const state = { page_id: 3 };
+      const title = 'signUp';
+      const url = '';
+      history.pushState(state, title, url);
+      return container.appendChild(components.signUpTemplate()); }
     case '#/home':
-    { return container.appendChild(components.homeTemplate()); }
+    { const state = { page_id: 1 };
+      const title = 'home';
+      const url = '';
+      history.pushState(state, title, url);
+      return container.appendChild(components.homeTemplate()); }
     default:
       break;
   }

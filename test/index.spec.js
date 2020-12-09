@@ -16,19 +16,16 @@ global.firebase = firebasemock.MockFirebaseSdk(
 );
 
 describe('se crea un usuario', () => {
-  it('Debería poder registrarse un usuario', () => signUpUser('pepita@gmail.com', 'abc1d')
+  it('Debería poder registrarse un usuario', (done) => signUpUser('pepita@gmail.com', 'abc1d')
     .then((res) => {
       expect(res.email).toBe('pepita@gmail.com');
+      done();
     }));
   it('Debería poder ingresar un usuario', () => signInUser('pepita@gmail.com', 'abc1d')
     .then((res) => {
       expect(res.email).toBe('pepita@gmail.com');
     }));
   it('Debería poder ingresar con google', () => signInGoogle()
-    .then((res) => {
-      expect(res.isAnonymous).toBe(false);
-    }));
-  it('Debería poder salir de la cuenta', () => signInGoogle()
     .then((res) => {
       expect(res.isAnonymous).toBe(false);
     }));
