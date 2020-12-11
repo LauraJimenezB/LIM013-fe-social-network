@@ -1,9 +1,7 @@
 import {
-  createPost, post, myownPosts, deletePosts, updatePost,
+  createPost, myownPosts, deletePosts, profile, uploadPost, profilePost,
 } from '../controllers/home-controller.js';
-
-const firestore = () => firebase.firestore();
-const db = firestore;
+import { logOut } from '../firebase/auth.js';
 
 export const home = () => {
   const homeView = `<div class="homeContainer">
@@ -52,15 +50,13 @@ export const home = () => {
 `;
   const divElement = document.createElement('div');
   divElement.innerHTML = homeView;
-  // Obteniendo el valor del textarea
   const textValue = divElement.querySelector('#textValue');
-  // Obteniendo el valor de privacidad
   const statusValue = divElement.querySelector('#status');
-  // Subiendo el valor a firestore
   const sendButton = divElement.querySelector('#send');
 
   let editStatus = false;
   let id = '';
+
   /*   SUBIR IMAGENES */
   const imageButton = divElement.querySelector('#imageFile');
   let file;
@@ -68,41 +64,12 @@ export const home = () => {
     file = e.target.files[0];
   });
   sendButton.addEventListener('click', () => {
-    const user = firebase.auth().currentUser;
-    if (user && file) {
-      const fileRef = firebase.storage().ref(`users/${user.uid}/${file.name}`);
-      const uploadTask = fileRef.put(file);
-      const text = textValue.value;
-      uploadTask.then(() => {
-        console.log(textValue.value);
-        console.log('Succesfully uploaded');
-        return fileRef.getDownloadURL().then((url) => {
-          console.log('URL', url);
-          console.log(text);
-          if (!editStatus) {
-            post(text, statusValue.value, url);
-          } else {
-            updatePost(id, {
-              text: textValue.value,
-              status: statusValue.value,
-            });
-          }
-        });
-      });
-    } else if (user && file === undefined) {
-      if (!editStatus) {
-        post(textValue.value, statusValue.value, 'photo');
-      } else {
-        updatePost(id, {
-          text: textValue.value,
-          status: statusValue.value,
-        });
-      }
-    }
+    uploadPost(file, editStatus, textValue, statusValue, id);
     textValue.value = '';
     editStatus = false;
     sendButton.innerText = 'Send';
   });
+
   // Log Out
   const logIn = divElement.querySelector('#logIn');
   const signUp = divElement.querySelector('#signUp');
@@ -110,58 +77,26 @@ export const home = () => {
   const username = divElement.querySelector('#username');
   const myPhoto = divElement.querySelector('#myPhoto');
 
-  const logOut = divElement.querySelector('#logOut');
-  logOut.addEventListener('click', (e) => {
+  const logOutButton = divElement.querySelector('#logOut');
+  logOutButton.addEventListener('click', (e) => {
     e.preventDefault();
-    firebase.auth().signOut().then(() => {
-      console.log('user signed out');
-      logIn.style.display = 'inline-block';
-      signUp.style.display = 'inline-block';
-      logOut.style.display = 'none';
-      myPosts.style.display = 'none';
-      username.innerHTML = 'User is not signed';
-      myPhoto.src = '../img/userPhoto.svg';
-    });
+    logOut();
+    logIn.style.display = 'inline-block';
+    signUp.style.display = 'inline-block';
+    logOutButton.style.display = 'none';
+    myPosts.style.display = 'none';
+    username.innerHTML = 'User is not signed';
+    myPhoto.src = '../img/userPhoto.svg';
   });
 
   // PROFILE
   const user = firebase.auth().currentUser;
   if (user) {
-    console.log('user is signed');
-    db().collection('users').doc(user.uid)
-      .onSnapshot((doc) => {
-        if (doc.exists) {
-          // console.log('Document data:', doc.data());
-          username.innerHTML = `USERNAME: ${doc.data().name}`;
-          myPhoto.src = doc.data().photo;
-          if (file.data().photo === 'no photo') {
-            myPhoto.src = '../img/userPhoto.svg';
-          }
-        } else {
-          // doc.data() will be undefined in this case
-          console.log('No such document!');
-        }
-      });
     logIn.style.display = 'none';
     signUp.style.display = 'none';
-    // Edit profile picture
-    divElement.querySelector('#editPhoto').onclick = () => {
-      const input = document.createElement('input');
-      input.type = 'file';
-      input.onchange = (e) => {
-        const files = e.target.files;
-        const reader = new FileReader();
-        reader.onload = () => {
-          db().collection('users').doc(user.uid).update({
-            photo: reader.result,
-          });
-        };
-        reader.readAsDataURL(files[0]);
-      };
-      input.click();
-    };
+    profile(divElement, user.uid, username, myPhoto);
   } else {
-    logOut.style.display = 'none';
+    logOutButton.style.display = 'none';
     myPosts.style.display = 'none';
     username.innerHTML = 'User is not signed';
     myPhoto.src = '../img/userPhoto.svg';
@@ -202,10 +137,11 @@ export const home = () => {
     divPost.innerHTML = postTemplate;
     const content = divPost.querySelector('#contentPost');
     const selectedImg = divPost.querySelector('#img');
-    content.textContent = doc.data().text;
     divPost.setAttribute('data-id', doc.id);
     postArea.appendChild(divPost);
 
+    // POST CONTENT
+    content.textContent = doc.data().text;
     if (doc.data().photo === 'photo') {
       selectedImg.style.display = 'none';
     } else {
@@ -218,14 +154,8 @@ export const home = () => {
     statusPost.innerHTML = doc.data().status;
     const uidPost = doc.data().uid;
     usernamePost.textContent = uidPost;
-    db().collection('users').doc(uidPost)
-      .onSnapshot((f) => {
-        usernamePost.innerHTML = f.data().name;
-        userphotoPost.src = f.data().photo;
-        if (f.data().photo === 'no photo') {
-          userphotoPost.src = '../img/userPhoto.svg';
-        }
-      });
+    // POST USER INFO
+    profilePost(uidPost, usernamePost, userphotoPost);
 
     // DELETE
     const deletePost = divPost.querySelector('#delete');
@@ -239,7 +169,6 @@ export const home = () => {
     const editPost = divPost.querySelector('#edit');
     editPost.addEventListener('click', (e) => {
       e.stopPropagation();
-      // editArea.style.display = 'block';
       editStatus = true;
       sendButton.innerText = 'Update';
       id = e.target.parentElement.parentElement.getAttribute('data-id');
@@ -251,16 +180,16 @@ export const home = () => {
   const postsArea = divElement.querySelector('#publicPost');
   createPost(showPosts, postsArea);
 
+  // MY POSTS SECTION
   myPosts.addEventListener('click', (e) => {
     e.stopPropagation();
-    // const postDiv = divElement.querySelectorAll('.divPost');
     Array.from(divElement.querySelectorAll('.divPost'))
-      .forEach((each) => {
+      .forEach((div) => {
         // eslint-disable-next-line no-param-reassign
-        each.style.display = 'none';
+        div.style.display = 'none';
       });
-    // for (let x = 0; x < postDiv.length; x++) { postDiv[x].style.display = 'none'; }
     myownPosts(showPosts, postArea, user.uid);
   });
+
   return divElement;
 };

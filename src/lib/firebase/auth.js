@@ -16,3 +16,6 @@ export const signInGoogle = () => {
   auth().onAuthStateChanged((user) => user.uid);
 };
  */
+export const logOut = () => {
+  auth().signOut().then((res) => res);
+};
