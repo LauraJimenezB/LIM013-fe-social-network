@@ -1,0 +1,430 @@
+body {
+  background-color: rgb(17, 17, 17);
+  margin:0%;
+}
+
+.homeContainer{
+    display: flex;
+    flex-direction: column;
+    margin:0%;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgb(17, 17, 17);
+  }
+  
+  .homeHeader{
+    color: #FFFFFF;
+    font-family: "Nova Round", monospace;
+    margin: 0%;
+    width:100vw;
+    background-color: rgb(17, 17, 17);
+    border-bottom: #f8f2f2;
+    border-left: rgb(17, 17, 17);
+    border-style: solid;
+    border-width: 2px;
+  }
+  .homeHeader a {
+    text-decoration: none;
+  }
+
+  nav{
+    width: 100vw;
+    background-color: rgb(17, 17, 17);
+  }
+    .checkbtn{
+      font-size: 30px;
+    color: white;
+    float: right;
+    line-height: 80px;
+    margin-right: 40px;
+    cursor: pointer;
+    display: flex;
+    }
+    ul{
+      position: fixed;
+      width: 30%;
+      height: 100vh;
+      background-color:  rgb(17, 17, 17);
+      top: 80px;
+      right: -100%;
+      text-align: center;
+      transition: all .5s;
+    }
+    nav ul li{
+      display: block;
+      margin: 50px 0;
+      line-height: 30px;
+  
+    }
+    .homeHeader nav ul li a {
+      font-size: 20px;
+      color: white;
+    padding: 7px 13px;
+    border-radius: 3px;
+    text-transform: uppercase;
+    }
+
+    .homeHeader a:hover{
+      background: none;
+      color: #464e53;
+    }
+    #check:checked ~ ul{
+      right: 0;
+    }
+
+    label.logo{
+      color: #902414;
+      line-height: 80px;
+      padding: 0 100px;
+      font-weight: bold;
+        font-size: 30px;
+        padding-left: 50px;
+    }
+
+    #check {
+      display:none;
+    }
+
+  /*
+  ----------------------------------------
+  */
+
+  .main{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    background-color: rgb(17, 17, 17);
+    margin:0%;
+    margin-right: 40px;
+  }
+
+  #username {
+    font-size: 20px;
+    color: whitesmoke;
+    width:300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .homeProfile {
+    display: none;
+    flex-direction: column;
+    color: #797979;
+    margin-top: 25px;
+    width: 35%;
+    align-items: center;
+    height: 100%;
+    border-top: #242323;
+    border-style: none;
+  }
+
+  .homeProfile figure {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .homeProfile figcaption {
+    padding: 5%;
+    font-family: 'Livvic', sans-serif;
+  }
+  .posts {
+    display:flex;
+    width: 100%;
+    height: 1''vh;
+    flex-direction: column;
+  }
+  .homeEditor{
+    display: flex;
+    flex-direction: column;
+    background-color: #242323;
+    color: #FFFFFF;
+    width:100%;
+    margin-right: 0%;
+    height: 25vh;
+    padding-top: 5%;
+    padding-bottom: 0%;
+  }
+  .homeEditor button{
+    width: 150px;
+    height: 30px;
+    border-radius: 20px;
+    background-color:rgb(114, 37, 37);
+    color: #ffffff;
+    border-style: hidden;
+    font-weight:bolder;
+    margin-bottom: 45px;
+    margin-top: 20px;
+    font-family: 'Livvic', sans-serif;
+  }
+  .homeEditor textarea{
+    height: 50%;
+    width: 80%;
+    padding: 10px;
+    margin: auto;
+    font-family: 'Livvic', sans-serif;
+  }
+  .postButtons {
+    display: flex;
+    flex-direction: row;
+    justify-content:space-between;
+    width:80%;
+    margin-top: 0%;
+    margin-bottom: 0%;
+    margin-right: auto;
+    margin-left: auto;
+    padding: 0%;
+
+  }
+
+  #imageFile {
+    margin: 0%;
+    margin-top: 10px;
+  }
+  #status{
+    margin: 0;
+  }
+
+  #myPhoto{
+    width:160px;
+    height: 160px;
+    border-radius: 50%;
+    margin-top: 30px;
+  }
+  #imgEditPhoto {
+    width:25px;
+    height: 25px;
+    background-color: white;
+    outline: none;
+  }
+  #editPhoto {
+    width:42px;
+    height: 42px;
+    border-radius: 50%;
+    background-color: white;
+    outline: none;
+    border-style: hidden;
+    padding:0%;
+    position: relative;
+    left:50px;
+    top: -30px;
+  }
+ /* ---------------------POSTS------------------------ */
+.postArea {
+  margin-top: 20px;
+  padding: 0%;
+  background-color:  #242323;
+}
+
+ .divPost{ 
+  border-bottom: 2px solid rgb(117, 116, 116);
+  background-color:  #242323;
+  margin-top: 2vh;
+  width: 95%;
+  padding: 0.5vw;
+  border-bottom: 2px solid rgb(117, 116, 116);
+  margin-left: auto;
+  margin-right: auto;
+}
+.postUserInformation {
+  font-family: "Livvic", monospace ;
+  color: white;
+  text-align: center;
+  display: flex;
+}
+#usernamePost{
+  font-size: 18px;
+  margin-left: 18px;
+  font-weight: bold;
+  width:200px;
+}
+#statusPost{
+  font-style: italic;
+}
+.postUserInformation span {
+  margin-left:1.5vw;
+  margin-right:1.5vw;
+}
+.editDeletePrivacy {
+  margin-right: 20px;
+  width:98%;
+  display:flex;
+  justify-content: flex-end;
+}
+.editDeletePrivacy button {
+  background-color: white;
+  color: black;
+  font-family: 'Livvic', monospace;
+  border-color: rgb(71, 68, 68);
+  border-radius: 5px;
+  font-size: 15px;
+  font-weight: bold;
+  margin-left: 5px;
+  height:40px;
+}
+.editDeletePrivacy img {
+  width: 25px;
+  height: 25px;
+}
+.contentPost {
+  margin: 10px;
+  margin-top: 30px;
+  font-family: 'Open Sans', monospace;
+  margin-left: 15px;
+  color: white;
+}
+.homeEditor label{
+  font-family: 'Nova Round', monospace;
+}
+#check:checked nav ul{
+  display: flex;
+  flex-direction: row;
+}
+
+#img {
+  margin-top: 10px;
+  margin-bottom: 20px;
+  width:250px;
+  height: 250px;
+}
+
+#userPhoto {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+}
+#status{
+  height: 20px;
+}
+#username{
+  font-family: 'Livvic', monospace;
+}
+#likeButton{
+  border: outset black;
+  border-radius: 20%;
+  padding: 3px 5px;
+  font-size: 15px;
+  margin-bottom: 2vh;
+  margin-left: 15px;
+  margin-top: 20px;
+}
+#like{
+  width: 20px;
+  height: 20px;
+}
+
+  @media (min-width: 858px){
+    label.logo{
+      font-size: 30px;
+      padding-left: 50px;
+    }
+    nav ul li a{
+      font-size: 16px;
+    }
+  }
+
+  @media (min-width: 952px) {
+    nav{
+      background-color: rgb(17, 17, 17);
+      height: 80px;
+      width: 100%;
+    }
+    label.logo{
+      font-size: 35px;
+      line-height: 80px;
+      padding: 0 100px;
+      font-weight: bold;
+    }
+
+    ul{
+      position: absolute;
+      width: 40%;
+      height: 10vh;
+      background-color: rgb(17, 17, 17);
+      top: 0%;
+      right: 0%;
+      text-align: center;
+      transition: all none;
+    }
+
+    nav ul{
+      float: right;
+      margin-right: 20px;
+      height:8vh;
+    }
+    nav ul li{
+      display: inline-block;
+      line-height: 80px;
+      margin: 0 5px;
+    }
+    nav ul li a{
+      color: white;
+      font-size: 17px;
+      border-radius: 3px;
+      text-transform: uppercase;
+    }
+    a:hover{
+      background: #515457;
+      transition: .5s;
+    }
+    .checkbtn{
+      display: none;
+    }
+    #check{
+      display: none;
+    }
+    .main{
+      display:flex;
+      flex-direction: row;
+    }
+    .homeProfile{
+      display:flex;
+      width:28%;
+      margin-left: 0%;
+      height: 100vh;
+    }
+    .postArea {
+      width:100%;
+      margin: none;
+      padding: none;
+    }
+    .textArea {
+      height:10vh;
+      width:70%;
+    }
+
+    
+    .posts {
+      width:70%;
+      margin-right: 0%;
+      height: 100vh;
+    }
+    .imgUser{
+      border-radius: 50%;
+    }
+  }
+@media(max-width: 420px){
+  label.logo{
+    font-size: 5vw;
+    padding: 0vw 5vw;
+  }
+}
+@media (max-width: 952px) {
+  .homeEditor{
+    margin-right: 5%;
+    margin-left: 5%;
+    width:90vw;
+  }
+  .postButtons{
+    width:75vw;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .divPost {
+    width:80vw;
+  }
+  .postArea{
+    margin-right: 5%;
+    margin-left: 5%;
+    width:90vw;
+  }
+}
