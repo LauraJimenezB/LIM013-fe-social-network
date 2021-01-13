@@ -2,7 +2,7 @@
 ![](src/img/header2.jpg)
 
 ## Producto final
-Puedes observar la interfaz del producto final aquí
+Puedes observar la interfaz del producto final [aquí](https://laurajimenezb.github.io/LIM013-fe-social-network/src/#)
 
 Street Food es una red social enfocada a reunir y compartir experiencias acerca de puntos de comida callejera o puestos no muy conocidos, de modo que otras personas los conozcan y así disfrutar de buena comida.
 
