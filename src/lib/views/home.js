@@ -24,21 +24,23 @@ export const home = () => {
 <div class="main">
   <aside class="homeProfile">
     <img width="100px" height="100px" id='myPhoto'>
+    <button id="editPhoto"><img src='./img/camara.svg' id="imgEditPhoto"></button>
     <figcaption></figcaption>
     <span id="username"></span>
-    <button id="editPhoto">Editar foto</button>
   </aside>
   <div class="posts">
   <section class="homeEditor">
     <textarea id="textValue" class="textArea" placeholder="Escribe aquí tus opiniones"></textarea>
     <div class="postButtons">
-    <input type="file" id="imageFile">
-    <button id="send">Send</button>
-    <label for="status">Status:</label>
-    <select id="status" name="status">
-      <option value="privado">Privado</option>
-      <option value="publico">Público</option>
-    </select>
+      <div>
+        <input type="file" id="imageFile">
+        <label class='status' for="status">Status:</label>
+        <select id="status" name="status" class='status'>
+          <option value="privado">Privado</option>
+          <option value="publico">Público</option>
+        </select>
+      </div>
+      <button id="send">Publicar</button>
     </div>
   </section>
   <section class='postArea' id='publicPost'>
@@ -53,6 +55,7 @@ export const home = () => {
   const textValue = divElement.querySelector('#textValue');
   const statusValue = divElement.querySelector('#status');
   const sendButton = divElement.querySelector('#send');
+  const editPhoto = divElement.querySelector('#editPhoto');
 
   let editStatus = false;
   let id = '';
@@ -85,7 +88,7 @@ export const home = () => {
     signUp.style.display = 'inline-block';
     logOutButton.style.display = 'none';
     myPosts.style.display = 'none';
-    username.innerHTML = 'User is not signed';
+    username.innerHTML = 'El usuario no ha iniciado sesión';
     myPhoto.src = '../img/userPhoto.svg';
   });
 
@@ -95,11 +98,13 @@ export const home = () => {
     logIn.style.display = 'none';
     signUp.style.display = 'none';
     profile(divElement, user.uid, username, myPhoto);
+    editPhoto.style.display = 'block';
   } else {
     logOutButton.style.display = 'none';
     myPosts.style.display = 'none';
-    username.innerHTML = 'User is not signed';
+    username.innerHTML = 'El usuario no ha iniciado sesión';
     myPhoto.src = '../img/userPhoto.svg';
+    editPhoto.style.display = 'none';
   }
 
   // POSTS
@@ -113,7 +118,11 @@ export const home = () => {
     <div class="postUserInformation">
       <img id='userPhoto' height='50px' width='50px'>
       <span id='usernamePost'></span>
+      <div class="editDeletePrivacy">
       <span id='statusPost'></span>
+    <button id='edit'><img src='./img/editar.svg' id="editPostIcon"></button>
+    <button id='delete'><img src='./img/eliminar.svg' id="deletePostIcon"></button>
+  </div>
     </div>
     <div id='editArea' style='display: none'>
       <textarea id="textEdit" class="textArea" placeholder="Escribe aquí tus opiniones"></textarea>
@@ -123,13 +132,9 @@ export const home = () => {
     </div>
     <div id="contentPost" class="contentPost"></div>
     <div id='images'>
-    <img id='img' height='150px' width='150px'>
+    <img id='img'>
     </div>
-    <div class="editDeletePrivacy">
-    <button id='edit'>Editar</button>
-    <button id='delete'>Eliminar</button>
-  </div>
-    <button id="likeButton"><span id="like" class="iconify" data-icon="ant-design:like-twotone" data-inline="false"></span> Like</button>
+     <button id="likeButton"><span id="like" class="iconify" data-icon="ant-design:like-twotone" data-inline="false"></span> Like</button>
     <div id="comment">
     </div>
   
@@ -161,7 +166,7 @@ export const home = () => {
     const deletePost = divPost.querySelector('#delete');
     deletePost.addEventListener('click', (e) => {
       e.stopPropagation();
-      const idPost = e.target.parentElement.parentElement.getAttribute('data-id');
+      const idPost = e.target.parentElement.parentElement.parentElement.parentElement.getAttribute('data-id');
       deletePosts(idPost);
     });
 
@@ -171,7 +176,7 @@ export const home = () => {
       e.stopPropagation();
       editStatus = true;
       sendButton.innerText = 'Update';
-      id = e.target.parentElement.parentElement.getAttribute('data-id');
+      id = e.target.parentElement.parentElement.parentElement.parentElement.getAttribute('data-id');
       const getPost = doc.data();
       textValue.value = getPost.text;
       statusValue.value = getPost.status;

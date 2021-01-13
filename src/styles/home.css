@@ -1,21 +1,35 @@
+body {
+  background-color: rgb(17, 17, 17);
+  margin:0%;
+}
+
 .homeContainer{
-    background-color: #FFFFFF;
     display: flex;
     flex-direction: column;
     margin:0%;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgb(17, 17, 17);
   }
   
   .homeHeader{
     color: #FFFFFF;
     font-family: "Nova Round", monospace;
+    margin: 0%;
+    width:100vw;
+    background-color: rgb(17, 17, 17);
+    border-bottom: #f8f2f2;
+    border-left: rgb(17, 17, 17);
+    border-style: solid;
+    border-width: 2px;
   }
   .homeHeader a {
     text-decoration: none;
   }
 
   nav{
-    background: #000000;
-    width: 100%;
+    width: 100vw;
+    background-color: rgb(17, 17, 17);
   }
     .checkbtn{
       font-size: 30px;
@@ -30,7 +44,7 @@
       position: fixed;
       width: 30%;
       height: 100vh;
-      background: #000000;
+      background-color:  rgb(17, 17, 17);
       top: 80px;
       right: -100%;
       text-align: center;
@@ -79,16 +93,21 @@
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+    background-color: rgb(17, 17, 17);
+    margin:0%;
+    margin-right: 40px;
   }
 
   .homeProfile {
     display: none;
     flex-direction: column;
-    background-color: #000000;
-    color: #FFFFFF;
-    margin-top: 8px;
-    width: 40%;
+    color: #797979;
+    margin-top: 25px;
+    width: 35%;
     align-items: center;
+    height: 100%;
+    border-top: #242323;
+    border-style: none;
   }
 
   .homeProfile figure {
@@ -108,24 +127,28 @@
   .homeEditor{
     display: flex;
     flex-direction: column;
-    background-color: #000000;
+    background-color: #242323;
     color: #FFFFFF;
-    margin-top: 8px;
-    width: 100%;
-    padding-top: 10%;
+    width:100%;
+    margin-right: 0%;
+    height: 25vh;
+    padding-top: 5%;
+    padding-bottom: 0%;
   }
   .homeEditor button{
     width: 150px;
     height: 30px;
     border-radius: 20px;
-    background-color:white;
-    color: #902414;
+    background-color:rgb(114, 37, 37);
+    color: #ffffff;
+    border-style: hidden;
     font-weight:bolder;
-    margin: 2%;
+    margin-bottom: 45px;
+    margin-top: 20px;
     font-family: 'Livvic', sans-serif;
   }
   .homeEditor textarea{
-    height: 60%;
+    height: 50%;
     width: 80%;
     padding: 10px;
     margin: auto;
@@ -134,32 +157,86 @@
   .postButtons {
     display: flex;
     flex-direction: row;
-    justify-content: flex-end;
-    margin: 5%;
+    justify-content:space-between;
+    width:80%;
+    margin-top: 0%;
+    margin-bottom: 0%;
+    margin-right: auto;
+    margin-left: auto;
+    padding: 0%;
+
+  }
+
+  #imageFile {
+    margin: 0%;
+    margin-top: 10px;
+  }
+  #status{
+    margin: 0;
+  }
+
+  #myPhoto{
+    width:160px;
+    height: 160px;
+    border-radius: 50%;
+    margin-top: 30px;
+  }
+  #imgEditPhoto {
+    width:25px;
+    height: 25px;
+    background-color: white;
+    outline: none;
+  }
+  #editPhoto {
+    width:42px;
+    height: 42px;
+    border-radius: 50%;
+    background-color: white;
+    outline: none;
+    border-style: hidden;
+    padding:0%;
+    position: relative;
+    left:50px;
+    top: -30px;
   }
  /* ---------------------POSTS------------------------ */
-.divPost{ 
-  border-color: rgb(34, 34, 34);
-  padding: 2vw;
-  border: 5px solid black;
-  border-radius: 20px ;
-  margin: 2vw 5vw;
+.postArea {
+  margin-top: 20px;
+  padding: 0%;
+  background-color:  #242323;
+}
+
+ .divPost{ 
+  border-bottom: 2px solid rgb(117, 116, 116);
+  background-color:  #242323;
+  margin-top: 2vh;
+  width: 95%;
+  padding: 0.5vw;
+  border-bottom: 2px solid rgb(117, 116, 116);
+  margin-left: auto;
+  margin-right: auto;
 }
 .postUserInformation {
   font-family: "Livvic", monospace ;
-  padding: 10px 20px;
-  background-color: black;
   color: white;
-  border-radius: 5px;
-  margin: 5px;
   text-align: center;
   display: flex;
 }
+#usernamePost{
+  font-size: 18px;
+  margin-left: 18px;
+  font-weight: bold;
+  width:200px;
+}
+#statusPost{
+  font-style: italic;
+}
 .postUserInformation span {
-  margin: 0px 3vw;
+  margin-left:1.5vw;
+  margin-right:1.5vw;
 }
 .editDeletePrivacy {
-  margin: 5px;
+  margin-right: 20px;
   width:98%;
   display:flex;
   justify-content: flex-end;
@@ -173,10 +250,18 @@
   font-size: 15px;
   font-weight: bold;
   margin-left: 5px;
+  height:40px;
+}
+.editDeletePrivacy img {
+  width: 25px;
+  height: 25px;
 }
 .contentPost {
   margin: 10px;
+  margin-top: 30px;
   font-family: 'Open Sans', monospace;
+  margin-left: 15px;
+  color: white;
 }
 .homeEditor label{
   font-family: 'Nova Round', monospace;
@@ -185,9 +270,18 @@
   display: flex;
   flex-direction: row;
 }
-input[type='file']#imageFile{
-  margin-top: 5px;
-  color:#fff;
+
+#img {
+  margin-top: 10px;
+  margin-bottom: 20px;
+  width:250px;
+  height: 250px;
+}
+
+#userPhoto {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
 }
 #status{
   height: 20px;
@@ -200,6 +294,9 @@ input[type='file']#imageFile{
   border-radius: 20%;
   padding: 3px 5px;
   font-size: 15px;
+  margin-bottom: 2vh;
+  margin-left: 15px;
+  margin-top: 20px;
 }
 #like{
   width: 20px;
@@ -218,7 +315,7 @@ input[type='file']#imageFile{
 
   @media (min-width: 952px) {
     nav{
-      background: #000000;
+      background-color: rgb(17, 17, 17);
       height: 80px;
       width: 100%;
     }
@@ -233,7 +330,7 @@ input[type='file']#imageFile{
       position: absolute;
       width: 30%;
       height: 10vh;
-      background: #050505;
+      background-color: rgb(17, 17, 17);
       top: 0%;
       right: 0%;
       text-align: center;
@@ -276,21 +373,6 @@ input[type='file']#imageFile{
       margin-left: 0%;
       height: 100vh;
     }
-    .homeEditor{
-      width:100%;
-      margin-right: 0%;
-      height: 20vh;
-      padding-top: 5%;
-      padding-bottom: 0%;
-    }
-    .divPost {
-      width: 90%;
-      padding: 0.5vw;
-      border: 5px solid black;
-      border-radius: 10px ;
-      margin-left: auto;
-      margin-right: auto;
-    }
     .postArea {
       width:100%;
       margin: none;
@@ -301,15 +383,7 @@ input[type='file']#imageFile{
       width:70%;
     }
 
-    .postButtons {
-      width:80%;
-      margin-top: 0%;
-      margin-bottom: 0%;
-      margin-right: auto;
-      margin-left: auto;
-      padding: 0%;
-
-    }
+    
     .posts {
       width:70%;
       margin-right: 0%;
@@ -323,5 +397,25 @@ input[type='file']#imageFile{
   label.logo{
     font-size: 5vw;
     padding: 0vw 5vw;
+  }
+}
+@media (max-width: 952px) {
+  .homeEditor{
+    margin-right: 5%;
+    margin-left: 5%;
+    width:90vw;
+  }
+  .postButtons{
+    width:75vw;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .divPost {
+    width:80vw;
+  }
+  .postArea{
+    margin-right: 5%;
+    margin-left: 5%;
+    width:90vw;
   }
 }

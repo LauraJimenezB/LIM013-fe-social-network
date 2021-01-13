@@ -5,13 +5,14 @@ import { logInWithGoogle } from '../controllers/signIn-controller.js';
 export const signUp = () => {
   const signUpView = `
   <div class="signUpContainer">
-    <div id=signUpOrder>
-      <div id='signUpForm'>
-        <header class="signUpHeader">
-          <h2 class="h2Up">REGISTRO</h2>
+  <header class="signUpHeader">
+          <h2 class="h2Up">STREET FOOD</h2>
+          <h3>Conoce y comparte experiencias</h3>
         </header>
+    
           <section class="signUpForm">
             <form>
+              <h2>REGISTRO</h2>
               <input class="signUpInput" id="name" type="text" placeholder="Nombre de usuario">
               <input  class="signUpInput" id="email" type="email" placeholder="Correo">
               <input  class="signUpInput" id="password" type="password" placeholder="Contraseña">
@@ -22,8 +23,6 @@ export const signUp = () => {
               <p>Ya tienes una cuenta creada?<a href="#/signIn">Inicia sesión</a></p>
             </div>
           </section>
-        </div>
-    </div>
 </div>
 `;
   // document.getElementById('container').innerHTML = signUpView;
